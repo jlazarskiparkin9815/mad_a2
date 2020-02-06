@@ -8,4 +8,9 @@
         <item>Trip Planner</item>
         <item>E2</item>
     </string-array>
+
+    /* StartTripActivity */
+    <string name="button_startTrip">Start Trip</string>
+    <string name="button_add">Add</string>
+    <string name="test_string">Testing a TextView</string>
 </resources>
