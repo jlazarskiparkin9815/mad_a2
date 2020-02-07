@@ -9,8 +9,6 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
-
 public class UIManager {
     // Converts dp to pixels so that DP can be programmatically assigned to a View element.
     // Without this method, you can only use pixels
