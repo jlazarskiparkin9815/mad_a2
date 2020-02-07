@@ -10,7 +10,9 @@
         android:id="@+id/reviewTitleBox"
         android:layout_width="411dp"
         android:layout_height="58dp"
-        android:text="Review Trip"
+        android:text="@string/reviewTitle"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +24,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="25dp"
-        android:text="TextView"
+        android:text="@string/tripBox"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -33,7 +35,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="29dp"
         android:layout_marginTop="21dp"
-        android:text="Edit"
+        android:text="@string/editButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reviewTitleBox" />
 
@@ -43,7 +45,7 @@
         android:layout_height="63dp"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="28dp"
-        android:text="Finish"
+        android:text="@string/finishButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reviewTitleBox" />
 
