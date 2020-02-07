@@ -13,4 +13,28 @@ public class Trip {
         private String name;
         private Date startDate;
         private Date endDate;
+
+        /*
+                FUNCTION: Trip
+                DESCRIPTION: Trip class constructor.
+                PARAMETERS: String new_name: The name of the trip.
+                            Date new_startDate: The trip's start date.
+                            Date new_endDate: The trip's end date.
+                RETURNS: N/A
+         */
+        public Trip(String new_name, Date new_startDate, Date new_endDate){
+                name = new_name;
+                startDate = new_startDate;
+                endDate = new_endDate;
+        }
+
+        /*
+                FUNCTION: addDestination
+                DESCRIPTION: Adds a destination to the trip.
+                PARAMETERS: DT new_dest: The destination to add to the list.
+                RETURNS: N/A
+         */
+        public void addDestination(DT new_dest){
+                dt_list.add(new_dest);
+        }
 }
