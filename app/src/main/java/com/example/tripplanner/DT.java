@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,7 +54,7 @@ public class DT extends AppCompatActivity {
     //      LinearLayout this method creates
     public static DT CreateDestinationTransit(AppCompatActivity activity, LinearLayout mainLayout, String name) {
         // Create the DT object
-        DT newDT = new DT(name);
+        final DT newDT = new DT(name);
 
         // Create the new layout and add it to the main layout
         LinearLayout subLayout = UIManager.createLinearLayout(activity);
@@ -79,7 +78,7 @@ public class DT extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
                 // Update the name of the DT object
-                //newDT.name = text.toString(); // **** Need to find a way to assign this.name (it's out of scope)
+                newDT.name = text.toString();
             }
 
             @Override
@@ -94,17 +93,15 @@ public class DT extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
 
-                // **** Need to find a way to assign this.type (it's out of scope) ****
-
                 // Assign to the DT_Type enum based on the selected item
-                if (selectedItem == "Type") {
-                    //newDT.type = DT_Type.NOT_SELECTED;
+                if (selectedItem.equals("Type")) {
+                    newDT.type = DT_Type.NOT_SELECTED;
                 }
-                else if (selectedItem == "Destination") {
-                    //newDT.type = DT_Type.DESTINATION;
+                else if (selectedItem.equals("Destination")) {
+                    newDT.type = DT_Type.DESTINATION;
                 }
-                else if (selectedItem == "Transit") {
-                    //newDT.type = DT_Type.TRANSIT;
+                else if (selectedItem.equals("Transit")) {
+                    newDT.type = DT_Type.TRANSIT;
                 }
             }
 
@@ -113,7 +110,6 @@ public class DT extends AppCompatActivity {
 
             }
         });
-
         return newDT;
     }
 }
