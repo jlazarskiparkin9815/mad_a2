@@ -34,20 +34,22 @@ public class StartTripActivity extends AppCompatActivity {
         // Create the click listener for the Add button
         addDTBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 // Create the DT object and add Trip List
                 DT newDT = DT.CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg));
                 newTrip.addDestination(newDT);
             }
         });
 
+
         // Create the click listener for the Start Trip buttons
         startTripBtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               // Navigate to the tripReview page
-               startActivity(new Intent(StartTripActivity.this, tripReview.class));
-           }
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartTripActivity.this, MainActivity.class));
+            }
         });
     }
+
+    public Trip getTrip() {return this.newTrip; }
 }
