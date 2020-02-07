@@ -2,6 +2,7 @@ package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,10 +35,9 @@ public class StartTripActivity extends AppCompatActivity {
         addDTBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Create the DT object and add Trip List
                 DT newDT = DT.CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg));
-
-                // Add the new DT object to a List
-                //newTrip.addDestination(newDT);  // ********* this line crashes the program *********
+                newTrip.addDestination(newDT);
             }
         });
 
@@ -45,8 +45,8 @@ public class StartTripActivity extends AppCompatActivity {
         startTripBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               // Display a testing message (debugging)
-               Toast.makeText(getApplicationContext(), "Start Trip button clicked!", Toast.LENGTH_SHORT).show();
+               // Navigate to the tripReview page
+               //startActivity(new Intent(StartTripActivity.class, tripReview.class));
            }
         });
     }
