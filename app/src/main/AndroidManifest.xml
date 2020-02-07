@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
 		
         <activity android:name=".tripReview"></activity>
+		
         <activity android:name=".HelpActivity" android:label="Help">
         </activity>
         <activity android:name=".StartTripActivity" android:exported="true"></activity>
