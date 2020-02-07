@@ -1,8 +1,13 @@
 package com.example.tripplanner;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +40,14 @@ public class DT extends AppCompatActivity {
         this.name = _name;
     }
 
+    /* ACCESSORS / MUTATORS */
+    public String getName() {
+        return this.name;
+    }
+    public DT_Type getDT_Type() {
+        return this.type;
+    }
+
     /* ADDITIONAL METHODS */
     // Creates a all elements needed to add a new Destination/Transit.
     // Elements include: DT object, EditText, and Spinner.
@@ -56,8 +69,50 @@ public class DT extends AppCompatActivity {
         newDT.typeSpinner = UIManager.createSpinner(activity);
         subLayout.addView(newDT.typeSpinner);
 
+        // Add a listener for the EditText
+        newDT.nameBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        // Add listeners to the
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int before, int count) {
+                // Update the name of the DT object
+                //newDT.name = text.toString(); // **** Need to find a way to assign this.name (it's out of scope)
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        // Add a listener for the Spinner
+        newDT.typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+                // **** Need to find a way to assign this.type (it's out of scope) ****
+
+                // Assign to the DT_Type enum based on the selected item
+                if (selectedItem == "Type") {
+                    //newDT.type = DT_Type.NOT_SELECTED;
+                }
+                else if (selectedItem == "Destination") {
+                    //newDT.type = DT_Type.DESTINATION;
+                }
+                else if (selectedItem == "Transit") {
+                    //newDT.type = DT_Type.TRANSIT;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return newDT;
     }
