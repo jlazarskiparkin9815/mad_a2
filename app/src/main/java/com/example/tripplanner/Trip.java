@@ -9,7 +9,7 @@ import java.util.List;
 //  - start date [date]
 //  - end date [date]
 public class Trip {
-        private List<DT> dt_list;
+        public List<DT> dt_list;
         private String name;
         private Date startDate;
         private Date endDate;
@@ -36,5 +36,12 @@ public class Trip {
          */
         public void addDestination(DT new_dest){
                 dt_list.add(new_dest);
+        }
+        public String getName() {return this.name;}
+        public Date getStart() {
+                return this.startDate;
+        }
+        public Date getEnd() {
+                return this.endDate;
         }
 }

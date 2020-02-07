@@ -11,12 +11,19 @@ import android.widget.TextView;
 public class tripReview extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState, Trip userTrip) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_review);
 
-        final TextView helloTextView = (TextView) findViewById(R.id.tripBox);
-        // helloTextView.setText(R.string.user_greeting);
+        final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
+        String tripString = "Name: " + userTrip.getName() + "\nStart Date: " + userTrip.getStart() + "\nEnd Date: " + userTrip.getEnd() + "\n#\tDT Type\tName\n";
+
+        for(int i = 1; i <= userTrip.dt_list.size(); i++)
+        {
+            tripString += i + ".\t" + userTrip.dt_list.get(i).getDT_Type() + "\t" + userTrip.dt_list.get(i).getName() + "\n";
+        }
+
+        tripInfo.setText(tripString);                                        // EDIT to insert the data
 
         //--------EDIT BUTTON--------//
         Button editButton = (Button) findViewById(R.id.editButton);
