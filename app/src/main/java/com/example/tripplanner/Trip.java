@@ -13,4 +13,8 @@ public class Trip {
         private String name;
         private Date startDate;
         private Date endDate;
+
+        public List<DT> getDt_list() {
+                return this.dt_list;
+        }
 }
