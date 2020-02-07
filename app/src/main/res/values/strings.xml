@@ -6,9 +6,32 @@
     <string name="tripplanner_name">to Trip Planner</string>
     <string name="tripplanner_description" >Trip Planner is an organizational tool used to help keep track of destinations on your trip. Trip Planner can tell you where you\'re going and how to get there. Press Begin to get started!</string>
 
+    <string name="helpTitle">Help Topic</string>
     <string-array name="help_topics">
         <item>Trip Planner</item>
-        <item>E2</item>
+        <item>Additional Help Item 1</item>
+        <item>Additional Help Item 2</item>
+        <item>Additional Help Item 3</item>
+        <item>Additional Help Item 4</item>
+        <item>Additional Help Item 5</item>
+        <item>Additional Help Item 6</item>
+        <item>Additional Help Item 7</item>
+    </string-array>
+    <string name="help_not_chosen">Choose a help topic.</string>
+    <string-array name="help_desc">
+        <item>
+            Welcome to Trip Planner!\n\n
+            This text is to be defined later.\n
+            This text is to be defined later.\n
+            This text is to be defined later.\n
+        </item>
+        <item>Trip Planner help to be defined. 1</item>
+        <item>Trip Planner help to be defined. 2</item>
+        <item>Trip Planner help to be defined. 3</item>
+        <item>Trip Planner help to be defined. 4</item>
+        <item>Trip Planner help to be defined. 5</item>
+        <item>Trip Planner help to be defined. 6</item>
+        <item>Trip Planner help to be defined. 7</item>
     </string-array>
 
     <!-- StartTripActivity -->
