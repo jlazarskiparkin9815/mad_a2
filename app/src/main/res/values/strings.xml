@@ -4,4 +4,9 @@
     <string name="tripplanner_help">Help</string>
     <string name="tripplanner_begin">Begin</string>
     <string name="tripplanner_name">To Trip Planner</string>
+
+    <string-array name="help_topics">
+        <item>Trip Planner</item>
+        <item>E2</item>
+    </string-array>
 </resources>
