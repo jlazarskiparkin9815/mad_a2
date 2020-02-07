@@ -40,10 +40,5 @@ public class StartTripActivity extends AppCompatActivity {
                toast.show();
            }
         });
-
-        /********** TESTING CODE ********/
-        //Toast.makeText(getApplicationContext(), tripEntry.getName(), Toast.LENGTH_SHORT).show();
-        //tripEntry.setName("Test name");
-        //Toast.makeText(getApplicationContext(), tripEntry.getName(), Toast.LENGTH_SHORT).show();
     }
 }

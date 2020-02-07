@@ -2,10 +2,14 @@ package com.example.tripplanner;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.lang.reflect.Array;
 
 public class UIManager {
     // Converts dp to pixels so that DP can be programmatically assigned to a View element.
@@ -38,5 +42,21 @@ public class UIManager {
         newEditText.setText(R.string.dt_msg);
 
         return newEditText;
+    }
+
+
+    // Creates a Spinner
+    public static Spinner createSpinner(AppCompatActivity activity) {
+        // Create the Spinner adapter
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(activity, R.array.dt_spinner,
+                                                                                    android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Create the Spinner and assign the adapter to the Spinner
+        Spinner spinner = new Spinner(activity);
+        spinner.setAdapter(spinnerAdapter);
+
+        // Return the Spinner
+        return spinner;
     }
 }

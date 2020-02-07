@@ -2,6 +2,7 @@ package com.example.tripplanner;
 
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,6 +69,8 @@ public class DT extends AppCompatActivity {
         subLayout.addView(newEditText);
 
         // Create the Spinner
+        Spinner newSpinner = UIManager.createSpinner(activity);
+        subLayout.addView(newSpinner);
 
         return newDT;
     }
