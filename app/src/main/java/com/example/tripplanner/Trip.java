@@ -1,6 +1,7 @@
 package com.example.tripplanner;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 // Data members:
@@ -26,6 +27,7 @@ public class Trip {
                 name = new_name;
                 startDate = new_startDate;
                 endDate = new_endDate;
+                dt_list = new LinkedList<>();
         }
 
         /*
