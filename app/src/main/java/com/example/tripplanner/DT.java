@@ -20,6 +20,8 @@ public class DT extends AppCompatActivity {
 
     private DT_Type type; // Whether the trip is a Destination or Transit (or not selected)
     private String name; // The name given to the Destination or Transit
+    private EditText nameBox;
+    private Spinner typeSpinner;
 
     // Constructor that sets all data members to default
     public DT (String _name) {
@@ -30,24 +32,6 @@ public class DT extends AppCompatActivity {
     // Constructor for the DT class which takes a DT_Type and name
     public DT (DT_Type _type, String _name) {
         this.type = _type;
-        this.name = _name;
-    }
-
-    /* ACCESSORS / MUTATORS */
-    public DT_Type getType() {
-        return this.type;
-    }
-
-    public void setType(DT_Type _type)
-    {
-        this.type = _type;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String _name) {
         this.name = _name;
     }
 
@@ -65,12 +49,15 @@ public class DT extends AppCompatActivity {
         mainLayout.addView(subLayout);
 
         // Create the EditText and add it to the sub-layout
-        EditText newEditText = UIManager.createEditText(activity);
-        subLayout.addView(newEditText);
+        newDT.nameBox = UIManager.createEditText(activity);
+        subLayout.addView(newDT.nameBox);
 
         // Create the Spinner
-        Spinner newSpinner = UIManager.createSpinner(activity);
-        subLayout.addView(newSpinner);
+        newDT.typeSpinner = UIManager.createSpinner(activity);
+        subLayout.addView(newDT.typeSpinner);
+
+
+        // Add listeners to the
 
         return newDT;
     }
