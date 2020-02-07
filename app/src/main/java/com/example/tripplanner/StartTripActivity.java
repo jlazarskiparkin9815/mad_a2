@@ -46,7 +46,7 @@ public class StartTripActivity extends AppCompatActivity {
            @Override
            public void onClick(View view) {
                // Navigate to the tripReview page
-               //startActivity(new Intent(StartTripActivity.class, tripReview.class));
+               startActivity(new Intent(StartTripActivity.this, tripReview.class));
            }
         });
     }
