@@ -2,12 +2,10 @@ package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.Date;
 
@@ -43,21 +41,12 @@ public class StartTripActivity extends AppCompatActivity {
         });
 
 
-        // Create the click listener for the Start Trip buttons
-        startTripBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StartTripActivity.this, MainActivity.class));
-            }
-        });
-
         cancelTripBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StartTripActivity.this, MainActivity.class));
             }
         });
+        startTripBtn.setOnClickListener(new StartTripOnClickListener(StartTripActivity.this, newTrip));
     }
-
-    public Trip getTrip() {return this.newTrip; }
 }
