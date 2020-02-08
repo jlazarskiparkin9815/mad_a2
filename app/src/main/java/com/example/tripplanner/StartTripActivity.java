@@ -50,6 +50,6 @@ public class StartTripActivity extends AppCompatActivity {
             }
         });
 
-        startTripBtn.setOnClickListener(new StartTripOnClickListener(StartTripActivity.this, newTrip));
+        startTripBtn.setOnClickListener(new StartTripOnClickListener(StartTripActivity.this));
     }
 }
