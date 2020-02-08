@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MaterialComponentsLight">
-        <activity android:name=".DestActivity"></activity>
-        <activity android:name=".TripReview"
-                  android:label="Review Trip" />
+        <activity android:name=".EditTrip"></activity>
+        <activity android:name=".DestActivity" />
+        <activity
+            android:name=".TripReview"
+            android:label="Review Trip" />
         <activity
             android:name=".HelpActivity"
             android:label="Help" />
         <activity
             android:name=".StartTripActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
