@@ -1,3 +1,10 @@
+/*
+    CLASS: StartTripActivity
+    PURPOSE: This Activity displays the Start Trip screen. It allows
+             the user to specify the name of their Trip and a start/end
+             date. The user can also enter any number of Destinations/Transits.
+ */
+
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
