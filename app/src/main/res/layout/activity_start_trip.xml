@@ -17,34 +17,42 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/dtItemsPanel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.32" />
 
     <Button
         android:id="@+id/cancelTripButton"
         android:layout_width="184dp"
         android:layout_height="73dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/tripplanner_buttonCancel"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
 
     <Button
         android:id="@+id/addDestButton"
         android:layout_width="184dp"
         android:layout_height="73dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/button_add"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/dtItemsPanel"
