@@ -9,12 +9,17 @@
 
 package com.example.tripplanner;
 
+import android.app.Activity;
+import android.widget.Toast;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Trip {
+        private static final int kDateLength = 10;
         private List<DT> dt_list;
         private String name;
         private Date startDate;
@@ -43,6 +48,22 @@ public class Trip {
          */
         public void addDestination(DT new_dest){
                 dt_list.add(new_dest);
+        }
+
+        /*
+        FUNCTION: validateDate
+        DESCRIPTION: Checks whether a date was valid. An error message is
+                     displayed if the date is invalid.
+        PARAMETERS: String dateStartStr: The date that's being checked.
+                    Activity displayMsgActivity: The Activity where the message is
+                        being displayed
+        RETURNS: void
+        */
+        public static void validateDate(Activity displayMsgActivity, String dateStartStr) {
+                // Check if the Date format is invalid and display an error message if it is
+                if (dateStartStr.length() >= kDateLength && Pattern.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d", dateStartStr) == false) {
+                        Toast.makeText(displayMsgActivity.getApplicationContext(), "Date format must be dd/mm/YYYY", Toast.LENGTH_LONG).show();
+                }
         }
 
         /* ACCESSORS FOR DATA MEMBERS*/
