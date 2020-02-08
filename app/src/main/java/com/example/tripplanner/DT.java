@@ -7,15 +7,24 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Button;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import java.util.Iterator;
 
 // Data members:
 //  - type (whether it's a Destination or Transit) [enum]
 //  - name (the name that the user gives the Destination/Trip)[string]
 //      Destination example: Hotel, Motel, etc.
 //      Transit: Car, Bus, or Train
+
 public class DT extends AppCompatActivity {
+
+    public static int idCounter = 0;
+
     public enum DT_Type {
         DESTINATION,
         TRANSIT
@@ -25,6 +34,8 @@ public class DT extends AppCompatActivity {
     private String name; // The name given to the Destination or Transit
     private EditText nameBox;
     private Spinner typeSpinner;
+    private Button delButton;
+    private int dtID;
 
     // Constructor that sets all data members to default
     public DT (String _name) {
@@ -42,21 +53,28 @@ public class DT extends AppCompatActivity {
     public String getName() {
         return this.name;
     }
-    public DT_Type getDT_Type() {
-        return this.type;
-    }
+    public DT_Type getDT_Type() { return this.type; }
+    public int getID(){ return this.dtID; }
 
     /* ADDITIONAL METHODS */
     // Creates a all elements needed to add a new Destination/Transit.
     // Elements include: DT object, EditText, and Spinner.
     // LinearLayout mainLayout: The LinearLayout that's holding the
     //      LinearLayout this method creates
-    public static DT CreateDestinationTransit(AppCompatActivity activity, LinearLayout mainLayout, String name, DT_Type newtype) {
+    public static DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, String name, DT_Type newtype, int id) {
         // Create the DT object
         final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
 
+        if (id == -1){
+            // Increments the DT id.
+            newDT.dtID = DT.idCounter;
+            DT.idCounter++;
+        }else{
+            newDT.dtID = id;
+        }
+
         // Create the new layout and add it to the main layout
-        LinearLayout subLayout = UIManager.createLinearLayout(activity);
+        final LinearLayout subLayout = UIManager.createLinearLayout(activity);
         mainLayout.addView(subLayout);
 
         // Create the EditText and add it to the sub-layout
@@ -76,6 +94,27 @@ public class DT extends AppCompatActivity {
                 break;
         }
 
+        newDT.delButton = UIManager.createButton(activity);
+        subLayout.addView(newDT.delButton);
+        newDT.delButton.setTag(newDT.getID());
+        newDT.delButton.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimary));
+        newDT.delButton.setTextColor(ContextCompat.getColor(activity, R.color.design_default_color_background));
+
+        newDT.delButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                for(int i = 0; i < StartTripActivity.newTrip.getDt_list().size(); i++){
+                    int tempID = StartTripActivity.newTrip.getDt_list().get(i).getID();
+                    int realID = (int)v.getTag();
+                    if(tempID == realID){
+                        StartTripActivity.newTrip.getDt_list().remove(i);
+                        break;
+                    }
+                }
+                mainLayout.removeView((View)v.getParent());
+            }
+        });
+
         // Add a listener for the EditText
         newDT.nameBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -86,7 +125,7 @@ public class DT extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
                 // Update the name of the DT object
-                newDT.name = text.toString();
+                newDT.name = newDT.nameBox.getText().toString();
             }
 
             @Override

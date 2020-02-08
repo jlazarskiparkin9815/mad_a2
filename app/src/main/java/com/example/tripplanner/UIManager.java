@@ -13,11 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UIManager {
-    final static int kEditText_Width = 230; // The width of EditText elements
+    final static int kEditText_Width = 200; // The width of EditText elements
 
     /*
         FUNCTION: calcDP()
@@ -86,5 +87,12 @@ public class UIManager {
         spinner.setAdapter(spinnerAdapter);
 
         return spinner;
+    }
+
+    public static Button createButton(AppCompatActivity activity){
+        Button newButton = new Button(activity);
+        newButton.setText("X");
+
+        return newButton;
     }
 }

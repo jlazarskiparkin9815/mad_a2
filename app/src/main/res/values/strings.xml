@@ -37,7 +37,7 @@
     <!-- StartTripActivity -->
     <string name="button_startTrip">Start Trip</string>
     <string name="button_add">Add</string>
-    <string name="dt_msg">Enter Destination or Transit</string>
+    <string name="dt_msg">Enter Name</string>
     <string name="editButton">Edit</string>
     <string name="finishButton">Finish</string>
     <string name="reviewTitle">Review Trip</string>
