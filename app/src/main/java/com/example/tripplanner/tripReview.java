@@ -17,9 +17,9 @@ public class tripReview extends AppCompatActivity {
         final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
         String tripString = "Name: " + userTrip.getName() + "\nStart Date: " + userTrip.getStart() + "\nEnd Date: " + userTrip.getEnd() + "\n#\tDT Type\tName\n";
 
-        for(int i = 1; i <= userTrip.dt_list.size(); i++)
+        for(int i = 1; i <= userTrip.getDt_list().size(); i++)
         {
-            tripString += i + ".\t" + userTrip.dt_list.get(i).getDT_Type() + "\t" + userTrip.dt_list.get(i).getName() + "\n";
+            tripString += i + ".\t" + userTrip.getDt_list().get(i).getDT_Type() + "\t" + userTrip.getDt_list().get(i).getName() + "\n";
         }
 
         tripInfo.setText(tripString);                                        // EDIT to insert the data
