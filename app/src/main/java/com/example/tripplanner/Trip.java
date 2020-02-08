@@ -50,4 +50,9 @@ public class Trip {
         public Date getStart() {return this.startDate;}
         public Date getEnd() {return this.endDate;}
         public List<DT> getDt_list() {return this.dt_list;}
+
+        /* MUTATORS FOR DATA MEMBERS */
+        public void setName(String name) {this.name = name;}
+        public void setStart(Date date) {this.startDate = date;}
+        public void setEnd(Date date) {this.endDate = date;}
 }
