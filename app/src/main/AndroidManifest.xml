@@ -16,7 +16,8 @@
             android:label="Help" />
         <activity
             android:name=".StartTripActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
