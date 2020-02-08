@@ -24,19 +24,19 @@ public class TripReview extends AppCompatActivity {
             //tripString += i + ".\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
         }
 
-        tripInfo.setText(tripString);                                        // EDIT to insert the data
+        tripInfo.setText(tripString); // EDIT to insert the data
         //--------EDIT BUTTON--------//
-        Button editButton = (Button) findViewById(R.id.editButton);
+        Button editButton = findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                startActivity(new Intent(TripReview.this, StartTripActivity.class)); // EDIT "HelpActivity" to the trip maker
+                startActivity(new Intent(TripReview.this, StartTripActivity.class));
             }
         });
 
         //--------FINISH BUTTON--------//
-        Button finishButton = (Button) findViewById(R.id.finishButton);
+        Button finishButton = findViewById(R.id.finishButton);
         finishButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
