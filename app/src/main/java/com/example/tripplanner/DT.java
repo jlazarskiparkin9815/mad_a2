@@ -96,7 +96,7 @@ public class DT extends AppCompatActivity {
         RETURNS:
             DT: The Dt object that was created
     */
-    public static DT CreateDestinationTransit(AppCompatActivity activity, LinearLayout mainLayout, String name, DT_Type newtype) {
+    public static DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, String name, DT_Type newtype, int id) {
         // Create the DT object
         final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
 
