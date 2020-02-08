@@ -164,7 +164,12 @@ public class StartTripActivity extends AppCompatActivity {
             }
         });
 
-        startTripBtn.setOnClickListener(new StartTripOnClickListener(StartTripActivity.this));
+        startTripBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartTripActivity.this, TripReview.class));
+            }
+        });
     }
 
     @Override
