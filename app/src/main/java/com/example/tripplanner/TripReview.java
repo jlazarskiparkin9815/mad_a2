@@ -34,13 +34,13 @@ public class TripReview extends AppCompatActivity {
             }
         });
 
-        //--------FINSIH BUTTON--------//
+        //--------FINISH BUTTON--------//
         Button finishButton = (Button) findViewById(R.id.finishButton);
         finishButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                startActivity(new Intent(TripReview.this, HelpActivity.class)); // EDIT "HelpActivity" to the final screen
+                startActivity(new Intent(TripReview.this, TripSummaryActivity.class));
             }
         });
 

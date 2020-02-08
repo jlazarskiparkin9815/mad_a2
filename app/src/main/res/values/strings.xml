@@ -34,7 +34,7 @@
         <item>Trip Planner help to be defined. 7</item>
     </string-array>
 
-    <!-- StartTripActivity -->
+    <!-- Start Trip Activity -->
     <string name="button_startTrip">Start Trip</string>
     <string name="button_add">Add</string>
     <string name="dt_msg">Enter Destination or Transit</string>
@@ -51,4 +51,12 @@
         <item>Destination</item>
         <item>Transit</item>
     </string-array>
+
+    <!-- Trip Summary Activity -->
+    <string name="label_greeting">You have arrived at your destination!</string>
+    <string name="label_summary">We hope your trip was a safe and pleasant one.
+        Please click the button below to return to the main menu and plan another trip.</string>
+    <string name="button_restart_text">Main Menu</string>
+
+
 </resources>
