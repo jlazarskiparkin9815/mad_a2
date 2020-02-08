@@ -36,12 +36,13 @@ public class StartTripActivity extends AppCompatActivity {
         Button startTripBtn = findViewById(R.id.startTripButton);
         Button cancelTripBtn = findViewById(R.id.cancelTripButton);
 
+        final EditText tripName = findViewById(R.id.editTripName);
         final EditText dateStart = findViewById(R.id.dateStart);
         final EditText dateEnd = findViewById(R.id.dateEnd);
 
         // Create the Trip (must add DT objects to it as they get created)
         Date defaultDate = new Date(2020, 2, 6); // tmp Date used for testing
-        newTrip = new Trip("Default Trip name", null, null); // tmp Trip using for testing
+        newTrip = new Trip("Untitled Trip", null, null); // tmp Trip using for testing
 
         /* -------------- CREATE LISTENERS -------------- */
         // Create the click listener for the Add button
@@ -51,6 +52,23 @@ public class StartTripActivity extends AppCompatActivity {
                 // Create the DT object and add Trip List
                 DT newDT = DT.CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg));
                 newTrip.addDestination(newDT);
+            }
+        });
+
+        tripName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                newTrip.setName(tripName.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -67,6 +85,7 @@ public class StartTripActivity extends AppCompatActivity {
                 ParsePosition dateParse = new ParsePosition(0);
                 SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
                 Date dateStartObj = dateAllFormat.parse(dateStartStr, dateParse);
+                newTrip.setStart(dateStartObj);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -87,6 +106,7 @@ public class StartTripActivity extends AppCompatActivity {
                 ParsePosition dateParse = new ParsePosition(0);
                 SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
                 Date dateEndObj = dateAllFormat.parse(dateEndStr, dateParse);
+                newTrip.setEnd(dateEndObj);
             }
 
             @Override
