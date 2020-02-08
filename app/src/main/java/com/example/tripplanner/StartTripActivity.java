@@ -8,6 +8,7 @@
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.content.Intent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
@@ -52,7 +54,10 @@ public class StartTripActivity extends AppCompatActivity {
         final EditText dateStart = findViewById(R.id.dateStart);
         final EditText dateEnd = findViewById(R.id.dateEnd);
         final SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
+        final NestedScrollView scrollView = findViewById(R.id.dtItemsScroll);
+        final TextView itemsAdded = findViewById(R.id.itemsAddedCount);
 
+        itemsAdded.setText(getResources().getString(R.string.itemsAddedCountStart));
         // Create the Trip (must add DT objects to it as they get created)
         Date defaultDate = new Date(2000, 1, 1); // tmp Date used for testing
         if(newTrip == null){
@@ -79,6 +84,8 @@ public class StartTripActivity extends AppCompatActivity {
                 // Create the DT object and add Trip List
                 DT newDT = CreateDestinationTransit(StartTripActivity.this, mainLayout, "", DT.DT_Type.DESTINATION, -1);
                 newTrip.addDestination(newDT);
+                itemsAdded.setText(newTrip.getDt_list().size() + " " + getResources().getString(R.string.itemsAddedCountSuffix));
+                scrollView.fullScroll(View.FOCUS_DOWN);
             }
         });
 

@@ -9,8 +9,8 @@
     <string name="helpTitle">Help Topic</string>
     <string-array name="help_topics">
         <item>Trip Planner</item>
-        <item>Additional Help Item 1</item>
-        <item>Additional Help Item 2</item>
+        <item>Getting Started</item>
+        <item>Trip Review</item>
         <item>Additional Help Item 3</item>
         <item>Additional Help Item 4</item>
         <item>Additional Help Item 5</item>
@@ -20,13 +20,22 @@
     <string name="help_not_chosen">Choose a help topic.</string>
     <string-array name="help_desc">
         <item>
-            Welcome to Trip Planner!\n\n
-            This text is to be defined later.\n
-            This text is to be defined later.\n
-            This text is to be defined later.\n
+            Welcome to Trip Planner!\n
+            Trip Planner is an organizational tool used to help keep track of destinations on your trip.\n
+            Trip Planner can tell you where you\'re going and how to get there.\n
         </item>
-        <item>Trip Planner help to be defined. 1</item>
-        <item>Trip Planner help to be defined. 2</item>
+        <item>
+            Getting started is easy.\n
+            On the Start screen, simply add a name, start, and end date.\n
+            You can then add new destination and transit methods dynamically by pressing ADD.\n
+            At anytime, you may return by pressing CANCEL or the upper left back button.\n
+            Once finished, you may press ADD TRIP to proceed.\n
+        </item>
+        <item>
+            After setting up the trip, you may review its current progress.\n
+            Pressing EDIT will bring you to a screen that lets you modify your current trip.\n
+            Pressing FINISH will complete your trip.\n
+        </item>
         <item>Trip Planner help to be defined. 3</item>
         <item>Trip Planner help to be defined. 4</item>
         <item>Trip Planner help to be defined. 5</item>
@@ -55,6 +64,9 @@
         <item>Destination</item>
         <item>Transit</item>
     </string-array>
+
+    <string name="itemsAddedCountSuffix">items added.</string>
+    <string name="itemsAddedCountStart">No items added.</string>
 
     <!-- Trip Summary Activity -->
     <string name="label_greeting">You have arrived at your destination!</string>
