@@ -47,6 +47,10 @@
     <string name="tripplanner_buttonCancel">CANCEL</string>
     <string name="tripplanner_dest">Destination</string>
     <string name="tripplanner_transit">Transit</string>
+    <string name="tripplanner_tripname">Enter Trip Name</string>
+    <string name="tripplanner_startdate">Start Date</string>
+    <string name="tripplanner_enddate">End Date</string>
+    <string name="button_continueTrip">Continue Trip</string>
     <string-array name="dt_spinner">
         <item>Destination</item>
         <item>Transit</item>
