@@ -4,12 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.content.Intent;
 
+import org.w3c.dom.Text;
+
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 
 public class StartTripActivity extends AppCompatActivity {
 
@@ -27,9 +36,12 @@ public class StartTripActivity extends AppCompatActivity {
         Button startTripBtn = findViewById(R.id.startTripButton);
         Button cancelTripBtn = findViewById(R.id.cancelTripButton);
 
+        final EditText dateStart = findViewById(R.id.dateStart);
+        final EditText dateEnd = findViewById(R.id.dateEnd);
+
         // Create the Trip (must add DT objects to it as they get created)
         Date defaultDate = new Date(2020, 2, 6); // tmp Date used for testing
-        newTrip = new Trip("Default Trip name", defaultDate, defaultDate); // tmp Trip using for testing
+        newTrip = new Trip("Default Trip name", null, null); // tmp Trip using for testing
 
         /* -------------- CREATE LISTENERS -------------- */
         // Create the click listener for the Add button
@@ -39,6 +51,47 @@ public class StartTripActivity extends AppCompatActivity {
                 // Create the DT object and add Trip List
                 DT newDT = DT.CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg));
                 newTrip.addDestination(newDT);
+            }
+        });
+
+        dateStart.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String dateStartStr = dateStart.getText().toString();
+
+                ParsePosition dateParse = new ParsePosition(0);
+                SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date dateStartObj = dateAllFormat.parse(dateStartStr, dateParse);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        dateEnd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String dateEndStr = dateEnd.getText().toString();
+
+                ParsePosition dateParse = new ParsePosition(0);
+                SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date dateEndObj = dateAllFormat.parse(dateEndStr, dateParse);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
