@@ -25,12 +25,9 @@ public class TripReview extends AppCompatActivity {
             tripDetailString += i + ".  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
         }
 
-<<<<<<< HEAD
         tripInfo.setText(tripString); // EDIT to insert the data
-=======
         tripDeatils.setText(tripDetailString);
         tripInfo.setText(tripString);                                        // EDIT to insert the data
->>>>>>> a32a8be9dfe46b2e81a261bbccdf459fabe5c913
         //--------EDIT BUTTON--------//
         Button editButton = findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener()
