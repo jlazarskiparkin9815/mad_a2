@@ -30,7 +30,7 @@ public class TripReview extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                startActivity(new Intent(TripReview.this, HelpActivity.class)); // EDIT "HelpActivity" to the trip maker
+                startActivity(new Intent(TripReview.this, StartTripActivity.class)); // EDIT "HelpActivity" to the trip maker
             }
         });
 

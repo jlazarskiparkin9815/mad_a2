@@ -39,10 +39,19 @@ public class StartTripActivity extends AppCompatActivity {
         final EditText tripName = findViewById(R.id.editTripName);
         final EditText dateStart = findViewById(R.id.dateStart);
         final EditText dateEnd = findViewById(R.id.dateEnd);
+        final SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         // Create the Trip (must add DT objects to it as they get created)
-        Date defaultDate = new Date(2020, 2, 6); // tmp Date used for testing
-        newTrip = new Trip("Untitled Trip", null, null); // tmp Trip using for testing
+        Date defaultDate = new Date(2000, 1, 1); // tmp Date used for testing
+        if(newTrip == null){
+            newTrip = new Trip("Untitled Trip", defaultDate, defaultDate); // tmp Trip using for testing
+        }else{
+            tripName.setText(newTrip.getName());
+            dateStart.setText(dateAllFormat.format(newTrip.getStart()));
+            dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
+        }
+
+
 
         /* -------------- CREATE LISTENERS -------------- */
         // Create the click listener for the Add button
@@ -83,7 +92,6 @@ public class StartTripActivity extends AppCompatActivity {
                 String dateStartStr = dateStart.getText().toString();
 
                 ParsePosition dateParse = new ParsePosition(0);
-                SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
                 Date dateStartObj = dateAllFormat.parse(dateStartStr, dateParse);
                 newTrip.setStart(dateStartObj);
             }
@@ -104,7 +112,6 @@ public class StartTripActivity extends AppCompatActivity {
                 String dateEndStr = dateEnd.getText().toString();
 
                 ParsePosition dateParse = new ParsePosition(0);
-                SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
                 Date dateEndObj = dateAllFormat.parse(dateEndStr, dateParse);
                 newTrip.setEnd(dateEndObj);
             }
