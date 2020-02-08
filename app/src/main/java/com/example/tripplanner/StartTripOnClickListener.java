@@ -38,7 +38,7 @@ public class StartTripOnClickListener implements View.OnClickListener {
     */
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(activity.getApplicationContext(), tripReview.class);
         intent.putExtra("dt_list", trip);
         activity.startActivity(intent);
     }

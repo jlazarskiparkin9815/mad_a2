@@ -54,7 +54,7 @@ public class DT extends AppCompatActivity {
     //      LinearLayout this method creates
     public static DT CreateDestinationTransit(AppCompatActivity activity, LinearLayout mainLayout, String name) {
         // Create the DT object
-        final DT newDT = new DT(name);
+        final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
 
         // Create the new layout and add it to the main layout
         LinearLayout subLayout = UIManager.createLinearLayout(activity);
@@ -94,10 +94,7 @@ public class DT extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
 
                 // Assign to the DT_Type enum based on the selected item
-                if (selectedItem.equals("Type")) {
-                    newDT.type = DT_Type.NOT_SELECTED;
-                }
-                else if (selectedItem.equals("Destination")) {
+                if (selectedItem.equals("Destination")) {
                     newDT.type = DT_Type.DESTINATION;
                 }
                 else if (selectedItem.equals("Transit")) {
