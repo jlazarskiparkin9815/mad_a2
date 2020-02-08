@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MaterialComponentsLight">
-        <activity android:name=".EditTrip"></activity>
         <activity android:name=".DestActivity" />
         <activity
             android:name=".TripReview"
