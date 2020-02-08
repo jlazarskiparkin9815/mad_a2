@@ -1,3 +1,10 @@
+/*
+    CLASS: StartTripActivity
+    PURPOSE: This Activity displays the Start Trip screen. It allows
+             the user to specify the name of their Trip and a start/end
+             date. The user can also enter any number of Destinations/Transits.
+ */
+
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.content.Intent;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -19,12 +27,12 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import java.util.List;
 
 import static com.example.tripplanner.DT.CreateDestinationTransit;
 
 public class StartTripActivity extends AppCompatActivity {
-
     private LinearLayout mainLayout; // The vertical layout that's used to hold the DT entries
     public static Trip newTrip;
 
@@ -48,7 +56,7 @@ public class StartTripActivity extends AppCompatActivity {
         // Create the Trip (must add DT objects to it as they get created)
         Date defaultDate = new Date(2000, 1, 1); // tmp Date used for testing
         if(newTrip == null){
-            newTrip = new Trip("Untitled Trip", defaultDate, defaultDate); // tmp Trip using for testing
+            newTrip = new Trip("Untitled Trip", defaultDate, defaultDate);
         }else{
             tripName.setText(newTrip.getName());
             dateStart.setText(dateAllFormat.format(newTrip.getStart()));
@@ -99,10 +107,14 @@ public class StartTripActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Get the date from the EditText and turn it into a Date object
                 String dateStartStr = dateStart.getText().toString();
-
                 ParsePosition dateParse = new ParsePosition(0);
                 Date dateStartObj = dateAllFormat.parse(dateStartStr, dateParse);
+
+                // Check if the Date format is invalid and display an error message if it is
+                Trip.validateDate(StartTripActivity.this, dateStartStr);
+
                 newTrip.setStart(dateStartObj);
             }
             @Override
@@ -119,10 +131,14 @@ public class StartTripActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Get the date from the EditText and turn it into a Date object
                 String dateEndStr = dateEnd.getText().toString();
-
                 ParsePosition dateParse = new ParsePosition(0);
                 Date dateEndObj = dateAllFormat.parse(dateEndStr, dateParse);
+
+                // Check if the Date format is invalid and display an error message if it is
+                Trip.validateDate(StartTripActivity.this, dateEndStr);
+
                 newTrip.setEnd(dateEndObj);
             }
 

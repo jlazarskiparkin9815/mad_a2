@@ -1,3 +1,11 @@
+/*
+ * CLASS   : DT
+ * PURPOSE : This is the object that's used to hold Destinations/Transits
+ *           that are created in the StartTripActivity. Destinations are
+ *           places that the user is staying on their Trip and Transit
+ *           are methods of transportation.
+ */
+
 package com.example.tripplanner;
 
 import android.text.Editable;
@@ -37,31 +45,58 @@ public class DT extends AppCompatActivity {
     private Button delButton;
     private int dtID;
 
-    // Constructor that sets all data members to default
+    /*
+        FUNCTION: DT
+        DESCRIPTION: Constructor for the DT class. Allows specify a name (e.g. Motel/Hotel,
+                     or Car/Bus).
+        PARAMETERS:
+            String _name: The name of the Destination or Transit.
+        RETURNS: N/A
+    */
     public DT (String _name) {
         this.type = DT_Type.DESTINATION;
         this.name = _name;
     }
 
-    // Constructor for the DT class which takes a DT_Type and name
-    public DT (DT_Type _type, String _name) {
-        this.type = _type;
-        this.name = _name;
-    }
-
-    /* ACCESSORS / MUTATORS */
+    /*
+        FUNCTION: DT
+        DESCRIPTION: Accessor for 'private String name'. Allows retrieving
+                     the value of the data member.
+        PARAMETERS: N/A
+        RETURNS: String: The value of the 'String name'.
+    */
     public String getName() {
         return this.name;
     }
-    public DT_Type getDT_Type() { return this.type; }
-    public int getID(){ return this.dtID; }
 
-    /* ADDITIONAL METHODS */
-    // Creates a all elements needed to add a new Destination/Transit.
-    // Elements include: DT object, EditText, and Spinner.
-    // LinearLayout mainLayout: The LinearLayout that's holding the
-    //      LinearLayout this method creates
-    public static DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, String name, DT_Type newtype, int id) {
+    /*
+        FUNCTION: DT
+        DESCRIPTION: Accessor for 'private DT_Type type'. Allows retrieving
+                     the value of the data member.
+        PARAMETERS: N/A
+        RETURNS: DT_Type: The value of the 'String name'.
+    */
+    public DT_Type getDT_Type() {
+        return this.type;
+    }
+    public int getID(){
+         return this.dtID;
+    }
+
+    /*
+        FUNCTION: CreateDestinationTransit()
+        DESCRIPTION: Creates a all elements needed to add a new Destination/Transit.
+                     Elements that are created include: DT object, EditText, and Spinner.
+        PARAMETERS:
+            AppCompatActivity activity: The Activity that the UI elements are being displayed on
+            LinearLayout mainLayout: The LinearLayout that contains the LinearLayout created
+                                     in this method.
+            String name: The name that's being assigned to the DT object
+            DT_Type newType: The type of DT object that's being created (either Destination or Transit)
+        RETURNS:
+            DT: The Dt object that was created
+    */
+    public static DT CreateDestinationTransit(AppCompatActivity activity, LinearLayout mainLayout, String name, DT_Type newtype) {
         // Create the DT object
         final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
 
