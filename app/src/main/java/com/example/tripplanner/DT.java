@@ -64,7 +64,7 @@ public class DT extends AppCompatActivity {
         newDT.nameBox = UIManager.createEditText(activity);
         subLayout.addView(newDT.nameBox);
 
-        // Create the Spinner
+        // Create the Spinner and add it to the sub-layout
         newDT.typeSpinner = UIManager.createSpinner(activity);
         subLayout.addView(newDT.typeSpinner);
 
@@ -110,6 +110,7 @@ public class DT extends AppCompatActivity {
 
             }
         });
+
         return newDT;
     }
 }
