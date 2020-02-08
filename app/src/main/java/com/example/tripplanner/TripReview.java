@@ -16,14 +16,16 @@ public class TripReview extends AppCompatActivity {
         setContentView(R.layout.activity_trip_review);
 
         final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
-        String tripString = "Name: " + StartTripActivity.newTrip.getName() + "\nStart Date: " + StartTripActivity.newTrip.getStart() + "\nEnd Date: " + StartTripActivity.newTrip.getEnd(); //+ "\n#\tDT Type\tName\n";
-
+        final TextView tripDeatils = (TextView) findViewById(R.id. TripDetails);
+        String tripString = "Name: " + StartTripActivity.newTrip.getName() + "\nStart Date: " + StartTripActivity.newTrip.getStart() + "\nEnd Date: " + StartTripActivity.newTrip.getEnd();
+        String tripDetailString = "\n#      DT Type            Name\n";
 
         for(int i = 1; i <= StartTripActivity.newTrip.getDt_list().size(); i++)
         {
-            //tripString += i + ".\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
+            tripDetailString += i + ".  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
         }
 
+        tripDeatils.setText(tripDetailString);
         tripInfo.setText(tripString);                                        // EDIT to insert the data
         //--------EDIT BUTTON--------//
         Button editButton = (Button) findViewById(R.id.editButton);
