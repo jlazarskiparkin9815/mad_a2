@@ -16,15 +16,21 @@ public class TripReview extends AppCompatActivity {
         setContentView(R.layout.activity_trip_review);
 
         final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
-        String tripString = "Name: " + StartTripActivity.newTrip.getName() + "\nStart Date: " + StartTripActivity.newTrip.getStart() + "\nEnd Date: " + StartTripActivity.newTrip.getEnd(); //+ "\n#\tDT Type\tName\n";
-
+        final TextView tripDeatils = (TextView) findViewById(R.id. TripDetails);
+        String tripString = "Name: " + StartTripActivity.newTrip.getName() + "\nStart Date: " + StartTripActivity.newTrip.getStart() + "\nEnd Date: " + StartTripActivity.newTrip.getEnd();
+        String tripDetailString = "\n#      DT Type            Name\n";
 
         for(int i = 1; i <= StartTripActivity.newTrip.getDt_list().size(); i++)
         {
-            //tripString += i + ".\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
+            tripDetailString += i + ".  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
         }
 
+<<<<<<< HEAD
         tripInfo.setText(tripString); // EDIT to insert the data
+=======
+        tripDeatils.setText(tripDetailString);
+        tripInfo.setText(tripString);                                        // EDIT to insert the data
+>>>>>>> a32a8be9dfe46b2e81a261bbccdf459fabe5c913
         //--------EDIT BUTTON--------//
         Button editButton = findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener()
