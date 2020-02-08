@@ -39,7 +39,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <Button
         android:id="@+id/addDestButton"
@@ -59,33 +59,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <LinearLayout
-        android:id="@+id/dtItemsPanel"
-        android:layout_width="385dp"
-        android:layout_height="334dp"
-        android:isScrollContainer="true"
-        android:orientation="vertical"
-        android:scrollbarStyle="insideInset"
-        android:scrollbars="vertical"
-        android:verticalScrollbarPosition="right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62">
-
-    </LinearLayout>
-
     <EditText
         android:id="@+id/editTripName"
         android:layout_width="178dp"
         android:layout_height="52dp"
         android:layout_marginTop="108dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/tripplanner_tripname"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/dtItemsPanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,11 +77,9 @@
         android:layout_width="102dp"
         android:layout_height="52dp"
         android:layout_marginTop="108dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/tripplanner_startdate"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/dtItemsPanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.627"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,14 +90,29 @@
         android:layout_width="102dp"
         android:layout_height="52dp"
         android:layout_marginTop="108dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/tripplanner_enddate"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/dtItemsPanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/dtItemsScroll"
+        android:layout_width="382dp"
+        android:layout_height="337dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.627">
+
+        <LinearLayout
+            android:id="@+id/dtItemsPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
