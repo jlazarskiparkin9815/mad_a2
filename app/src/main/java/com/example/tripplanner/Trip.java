@@ -1,3 +1,12 @@
+/*
+ * CLASS   : Trip
+ * PURPOSE : This class models the Trip. It contains all data related
+ *           to the Trip, including: name of the trip, start date, end date,
+ *           and a List of DT objects. The DT objects contain information
+ *           about each Destination/Transit for the Trip (refer to DT class
+ *           documentation for more information).
+ */
+
 package com.example.tripplanner;
 
 import java.io.Serializable;
@@ -5,16 +14,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-// Data members:
-//  - Destination/Transits [List]
-//  - name [string]
-//  - start date [date]
-//  - end date [date]
-public class Trip implements Serializable {
-        private transient List<DT> dt_list;
-        private transient String name;
-        private transient Date startDate;
-        private transient Date endDate;
+public class Trip {
+        private List<DT> dt_list;
+        private String name;
+        private Date startDate;
+        private Date endDate;
 
         /*
                 FUNCTION: Trip
@@ -40,6 +44,8 @@ public class Trip implements Serializable {
         public void addDestination(DT new_dest){
                 dt_list.add(new_dest);
         }
+
+        /* ACCESSORS FOR DATA MEMBERS*/
         public String getName() {return this.name;}
         public Date getStart() {return this.startDate;}
         public Date getEnd() {return this.endDate;}
