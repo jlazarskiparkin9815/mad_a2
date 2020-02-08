@@ -59,7 +59,7 @@ public class StartTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create the DT object and add Trip List
-                DT newDT = DT.CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg));
+                DT newDT = DT.CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg), DT.DT_Type.DESTINATION);
                 newTrip.addDestination(newDT);
             }
         });
@@ -126,6 +126,7 @@ public class StartTripActivity extends AppCompatActivity {
         cancelTripBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                newTrip = null;
                 startActivity(new Intent(StartTripActivity.this, MainActivity.class));
             }
         });

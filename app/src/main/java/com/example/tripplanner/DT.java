@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 //      Transit: Car, Bus, or Train
 public class DT extends AppCompatActivity {
     public enum DT_Type {
-        NOT_SELECTED,
         DESTINATION,
         TRANSIT
     }
@@ -29,7 +28,7 @@ public class DT extends AppCompatActivity {
 
     // Constructor that sets all data members to default
     public DT (String _name) {
-        this.type = DT_Type.NOT_SELECTED;
+        this.type = DT_Type.DESTINATION;
         this.name = _name;
     }
 
@@ -52,7 +51,7 @@ public class DT extends AppCompatActivity {
     // Elements include: DT object, EditText, and Spinner.
     // LinearLayout mainLayout: The LinearLayout that's holding the
     //      LinearLayout this method creates
-    public static DT CreateDestinationTransit(AppCompatActivity activity, LinearLayout mainLayout, String name) {
+    public static DT CreateDestinationTransit(AppCompatActivity activity, LinearLayout mainLayout, String name, DT_Type newtype) {
         // Create the DT object
         final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
 
@@ -63,10 +62,19 @@ public class DT extends AppCompatActivity {
         // Create the EditText and add it to the sub-layout
         newDT.nameBox = UIManager.createEditText(activity);
         subLayout.addView(newDT.nameBox);
+        newDT.nameBox.setText(name);
 
         // Create the Spinner and add it to the sub-layout
         newDT.typeSpinner = UIManager.createSpinner(activity);
         subLayout.addView(newDT.typeSpinner);
+        switch(newtype){
+            case DESTINATION:
+                newDT.typeSpinner.setSelection(0);
+                break;
+            case TRANSIT:
+                newDT.typeSpinner.setSelection(1);
+                break;
+        }
 
         // Add a listener for the EditText
         newDT.nameBox.addTextChangedListener(new TextWatcher() {
