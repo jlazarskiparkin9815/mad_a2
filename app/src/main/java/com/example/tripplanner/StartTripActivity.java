@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.content.Intent;
 
 import java.util.Date;
 
@@ -47,6 +48,7 @@ public class StartTripActivity extends AppCompatActivity {
                 startActivity(new Intent(StartTripActivity.this, MainActivity.class));
             }
         });
+
         startTripBtn.setOnClickListener(new StartTripOnClickListener(StartTripActivity.this, newTrip));
     }
 }

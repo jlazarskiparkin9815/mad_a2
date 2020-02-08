@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class tripReview extends AppCompatActivity {
+public class TripReview extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState, Trip userTrip) {
         super.onCreate(savedInstanceState);
@@ -17,9 +17,9 @@ public class tripReview extends AppCompatActivity {
         final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
         String tripString = "Name: " + userTrip.getName() + "\nStart Date: " + userTrip.getStart() + "\nEnd Date: " + userTrip.getEnd() + "\n#\tDT Type\tName\n";
 
-        for(int i = 1; i <= userTrip.dt_list.size(); i++)
+        for(int i = 1; i <= userTrip.getDt_list().size(); i++)
         {
-            tripString += i + ".\t" + userTrip.dt_list.get(i).getDT_Type() + "\t" + userTrip.dt_list.get(i).getName() + "\n";
+            tripString += i + ".\t" + userTrip.getDt_list().get(i).getDT_Type() + "\t" + userTrip.getDt_list().get(i).getName() + "\n";
         }
 
         tripInfo.setText(tripString);                                        // EDIT to insert the data
@@ -30,7 +30,7 @@ public class tripReview extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                startActivity(new Intent(tripReview.this, HelpActivity.class)); // EDIT "HelpActivity" to the trip maker
+                startActivity(new Intent(TripReview.this, HelpActivity.class)); // EDIT "HelpActivity" to the trip maker
             }
         });
 
@@ -40,7 +40,7 @@ public class tripReview extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                startActivity(new Intent(tripReview.this, HelpActivity.class)); // EDIT "HelpActivity" to the final screen
+                startActivity(new Intent(TripReview.this, HelpActivity.class)); // EDIT "HelpActivity" to the final screen
             }
         });
 
