@@ -7,9 +7,11 @@
 
 package com.example.tripplanner;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -57,6 +59,12 @@ public class StartTripActivity extends AppCompatActivity {
         final NestedScrollView scrollView = findViewById(R.id.dtItemsScroll);
         final TextView itemsAdded = findViewById(R.id.itemsAddedCount);
 
+        mainLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                itemsAdded.setText(getItemsAddedStr());
+            }
+        });
         itemsAdded.setText(getResources().getString(R.string.itemsAddedCountStart));
         // Create the Trip (must add DT objects to it as they get created)
         Date defaultDate = new Date(2000, 1, 1); // tmp Date used for testing
@@ -84,8 +92,7 @@ public class StartTripActivity extends AppCompatActivity {
                 // Create the DT object and add Trip List
                 DT newDT = CreateDestinationTransit(StartTripActivity.this, mainLayout, "", DT.DT_Type.DESTINATION, -1);
                 newTrip.addDestination(newDT);
-                itemsAdded.setText(newTrip.getDt_list().size() + " " + getResources().getString(R.string.itemsAddedCountSuffix));
-                scrollView.fullScroll(View.FOCUS_DOWN);
+                scrollView.fullScroll(View.FOCUS_DOWN); // scroll down
             }
         });
 
@@ -167,7 +174,24 @@ public class StartTripActivity extends AppCompatActivity {
         startTripBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartTripActivity.this, TripReview.class));
+                if (newTrip.getDt_list().size() == 0)
+                {
+                    new AlertDialog.Builder(StartTripActivity.this)
+                            .setTitle("Attention")
+                            .setMessage("At least 1 destination/transit must be added prior to continuing.")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .show();
+                }
+                else
+                {
+                    startActivity(new Intent(StartTripActivity.this, TripReview.class));
+                }
+
             }
         });
     }
@@ -176,5 +200,17 @@ public class StartTripActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){ // actionbar back button
         finish();
         return true;
+    }
+
+    public String getItemsAddedStr()
+    {
+        if (newTrip.getDt_list().size() == 0)
+        {
+            return getResources().getString(R.string.itemsAddedCountStart);
+        }
+        else
+        {
+            return newTrip.getDt_list().size() + " " + getResources().getString(R.string.itemsAddedCountSuffix);
+        }
     }
 }
