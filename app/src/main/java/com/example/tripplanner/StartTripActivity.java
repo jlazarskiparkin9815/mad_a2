@@ -19,6 +19,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
+import java.util.List;
+
+import static com.example.tripplanner.DT.CreateDestinationTransit;
 
 public class StartTripActivity extends AppCompatActivity {
 
@@ -49,6 +52,12 @@ public class StartTripActivity extends AppCompatActivity {
             tripName.setText(newTrip.getName());
             dateStart.setText(dateAllFormat.format(newTrip.getStart()));
             dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
+
+            List<DT> tmpList = newTrip.getDt_list();
+            for(int i = 0; i < tmpList.size(); i++)
+            {
+                CreateDestinationTransit(StartTripActivity.this, mainLayout, tmpList.get(i).getName(), tmpList.get(i).getDT_Type());
+            }
         }
 
 
@@ -59,7 +68,7 @@ public class StartTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create the DT object and add Trip List
-                DT newDT = DT.CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg), DT.DT_Type.DESTINATION);
+                DT newDT = CreateDestinationTransit(StartTripActivity.this, mainLayout, getString(R.string.dt_msg), DT.DT_Type.DESTINATION);
                 newTrip.addDestination(newDT);
             }
         });
