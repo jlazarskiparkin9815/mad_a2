@@ -23,8 +23,9 @@ public class StartTripActivity extends AppCompatActivity {
 
         // Get references to UI elements and store them in data members
         mainLayout = findViewById(R.id.dtItemsPanel);
-        Button addDTBtn = findViewById(R.id.addDTBtn);
-        Button startTripBtn = findViewById(R.id.startTripBtn);
+        Button addDTBtn = findViewById(R.id.addDestButton);
+        Button startTripBtn = findViewById(R.id.startTripButton);
+        Button cancelTripBtn = findViewById(R.id.cancelTripButton);
 
         // Create the Trip (must add DT objects to it as they get created)
         Date defaultDate = new Date(2020, 2, 6); // tmp Date used for testing
@@ -44,6 +45,13 @@ public class StartTripActivity extends AppCompatActivity {
 
         // Create the click listener for the Start Trip buttons
         startTripBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartTripActivity.this, MainActivity.class));
+            }
+        });
+
+        cancelTripBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StartTripActivity.this, MainActivity.class));

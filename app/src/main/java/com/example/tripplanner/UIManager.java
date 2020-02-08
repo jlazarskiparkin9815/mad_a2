@@ -34,10 +34,10 @@ public class UIManager {
         EditText newEditText = new EditText(activity);
 
         // Add attributes to the EditText
-        final int kEditText_Width = 250;
+        final int kEditText_Width = 230;
         newEditText.setLayoutParams(new LinearLayout.LayoutParams(calcDP(newEditText, kEditText_Width),
                                                                   ViewGroup.LayoutParams.WRAP_CONTENT));
-        newEditText.setText(R.string.dt_msg);
+        newEditText.setHint(R.string.dt_msg);
 
         return newEditText;
     }

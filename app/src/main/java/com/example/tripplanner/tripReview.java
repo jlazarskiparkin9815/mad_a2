@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class tripReview extends AppCompatActivity {
 
-    @Override
     protected void onCreate(Bundle savedInstanceState, Trip userTrip) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_review);

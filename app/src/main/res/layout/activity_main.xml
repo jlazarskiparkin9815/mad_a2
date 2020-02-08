@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark"
+    android:background="@color/design_default_color_surface"
     tools:context=".MainActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:background="@android:color/transparent"
         android:text="@string/tripplanner_title"
         android:textAllCaps="false"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="36sp"
         android:textStyle="bold"
         android:typeface="normal"
@@ -28,7 +28,7 @@
         android:id="@+id/button"
         android:layout_width="184dp"
         android:layout_height="73dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@color/colorPrimaryDark"
         android:text="@string/tripplanner_help"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
@@ -44,7 +44,7 @@
         android:id="@+id/button2"
         android:layout_width="184dp"
         android:layout_height="73dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@color/colorPrimaryDark"
         android:text="@string/tripplanner_begin"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="@string/tripplanner_name"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,16 +74,16 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="352dp"
-        android:layout_height="243dp"
+        android:layout_width="367dp"
+        android:layout_height="179dp"
+        android:background="@android:color/transparent"
         android:text="@string/tripplanner_description"
         android:textAlignment="center"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.438" />
 </androidx.constraintlayout.widget.ConstraintLayout>

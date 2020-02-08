@@ -4,7 +4,7 @@
     <string name="tripplanner_help">Help</string>
     <string name="tripplanner_begin">Begin</string>
     <string name="tripplanner_name">to Trip Planner</string>
-    <string name="tripplanner_description" >Trip Planner is an organizational tool used to help keep track of destinations on your trip. Trip Planner can tell you where you\'re going and how to get there. Press Begin to get started!</string>
+    <string name="tripplanner_description">Trip Planner is an organizational tool used to help keep track of destinations on your trip. Trip Planner can tell you where you\'re going and how to get there. Press Begin to get started!</string>
 
     <string name="helpTitle">Help Topic</string>
     <string-array name="help_topics">
@@ -41,8 +41,13 @@
     <string name="editButton">Edit</string>
     <string name="finishButton">Finish</string>
     <string name="reviewTitle">Review Trip</string>
+    <string name="tripplanner_destination">Event Name:</string>
+    <string name="tripplanner_label1">ex. Art Museum, Bus Ride</string>
+    <string name="tripplanner_buttonConfirm">CONFIRM</string>
+    <string name="tripplanner_buttonCancel">CANCEL</string>
+    <string name="tripplanner_dest">Destination</string>
+    <string name="tripplanner_transit">Transit</string>
     <string-array name="dt_spinner">
-        <item>Type</item>
         <item>Destination</item>
         <item>Transit</item>
     </string-array>
