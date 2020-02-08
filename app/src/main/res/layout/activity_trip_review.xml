@@ -39,21 +39,6 @@
         app:layout_constraintVertical_bias="0.13" />
 
     <TextView
-        android:id="@+id/reviewTitleBox"
-        android:layout_width="411dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/reviewTitle"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/tripBox"
         android:layout_width="354dp"
         android:layout_height="430dp"
