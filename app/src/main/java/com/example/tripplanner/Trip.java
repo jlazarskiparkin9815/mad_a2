@@ -1,5 +1,6 @@
 package com.example.tripplanner;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,11 +10,11 @@ import java.util.List;
 //  - name [string]
 //  - start date [date]
 //  - end date [date]
-public class Trip {
-        public List<DT> dt_list;
-        private String name;
-        private Date startDate;
-        private Date endDate;
+public class Trip implements Serializable {
+        private transient List<DT> dt_list;
+        private transient String name;
+        private transient Date startDate;
+        private transient Date endDate;
 
         /*
                 FUNCTION: Trip
@@ -40,10 +41,7 @@ public class Trip {
                 dt_list.add(new_dest);
         }
         public String getName() {return this.name;}
-        public Date getStart() {
-                return this.startDate;
-        }
-        public Date getEnd() {
-                return this.endDate;
-        }
+        public Date getStart() {return this.startDate;}
+        public Date getEnd() {return this.endDate;}
+        public List<DT> getDt_list() {return this.dt_list;}
 }
