@@ -1,3 +1,10 @@
+/*
+ * CLASS   : UIManager
+ * PURPOSE : This class allows dynamically allocating UI elements.
+ *           Methods are provided for creating the following elements:
+ *           LinearLayout, EditText, and Spinner.
+ */
+
 package com.example.tripplanner;
 
 import android.view.View;
@@ -10,14 +17,28 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UIManager {
-    // Converts dp to pixels so that DP can be programmatically assigned to a View element.
-    // Without this method, you can only use pixels
+    final static int kEditText_Width = 230; // The width of EditText elements
+
+    /*
+        FUNCTION: calcDP()
+        DESCRIPTION: Converts dp to pixels. This is needed so that
+                     width/height can be programmatically assigned
+                     to a View element using DP.
+        PARAMETERS: View view: The element that's having it's width/height changed
+                    int dp: The dp value
+        RETURNS: int: The dp values that's been converted to pixels
+    */
     public static int calcDP(View view, int dp) {
         float scale = view.getContext().getResources().getDisplayMetrics().density;
         return (int)(dp * scale + 0.5f);
     }
 
-    // Creates a LinearLayout
+    /*
+        FUNCTION: createLinearLayout()
+        DESCRIPTION: Creates a horizontal LinearLayout.
+        PARAMETERS: AppCompatActivity: The Activity that the LinearLayout is being added to
+        RETURNS: LinearLayout: The LinearLayout that was created
+    */
     public static LinearLayout createLinearLayout(AppCompatActivity activity) {
         LinearLayout newLayout = new LinearLayout(activity);
 
@@ -29,12 +50,17 @@ public class UIManager {
         return newLayout;
     }
 
-    // Creates an EditText
+
+    /*
+        FUNCTION: createEditText()
+        DESCRIPTION: Creates a EditText UI element.
+        PARAMETERS: AppCompatActivity: The Activity that the EditText is being added to
+        RETURNS: EditText: The EditText that was created
+    */
     public static EditText createEditText(AppCompatActivity activity) {
         EditText newEditText = new EditText(activity);
 
         // Add attributes to the EditText
-        final int kEditText_Width = 230;
         newEditText.setLayoutParams(new LinearLayout.LayoutParams(calcDP(newEditText, kEditText_Width),
                                                                   ViewGroup.LayoutParams.WRAP_CONTENT));
         newEditText.setHint(R.string.dt_msg);
@@ -43,7 +69,12 @@ public class UIManager {
     }
 
 
-    // Creates a Spinner
+    /*
+        FUNCTION: createSpinner()
+        DESCRIPTION: Creates a Spinner (drop-down list) UI element.
+        PARAMETERS: AppCompatActivity: The Activity that the Spinner is being added to
+        RETURNS: Spinner: The Spinner that was created
+    */
     public static Spinner createSpinner(AppCompatActivity activity) {
         // Create the Spinner adapter
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(activity, R.array.dt_spinner,
@@ -54,7 +85,6 @@ public class UIManager {
         Spinner spinner = new Spinner(activity);
         spinner.setAdapter(spinnerAdapter);
 
-        // Return the Spinner
         return spinner;
     }
 }
