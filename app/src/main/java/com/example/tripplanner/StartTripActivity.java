@@ -14,7 +14,7 @@ import java.util.Date;
 public class StartTripActivity extends AppCompatActivity {
 
     private LinearLayout mainLayout; // The vertical layout that's used to hold the DT entries
-    private Trip newTrip;
+    public static Trip newTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,23 +7,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TripReview extends AppCompatActivity {
 
-    protected void onCreate(Bundle savedInstanceState, Trip userTrip) {
+    protected void onCreate(Bundle savedInstanceState/*, Trip userTrip*/) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_review);
 
-        final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
-        String tripString = "Name: " + userTrip.getName() + "\nStart Date: " + userTrip.getStart() + "\nEnd Date: " + userTrip.getEnd() + "\n#\tDT Type\tName\n";
+        // Get the data from the Trip object
+        /*
+        Intent intent = getIntent();
+        Trip t = (Trip) intent.getSerializableExtra("dt_list");
+        if (t != null) { // Don't run this code before a Trip has been created
+            if (t.getDt_list() != null) {
+                for (int i = 0; i < t.getDt_list().size(); i++) {
+                    Toast.makeText(getApplicationContext(), "name = " + t.getDt_list().get(i).getName(), Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "start = " + t.getDt_list().get(i).getDT_Type(), Toast.LENGTH_SHORT);
+                }
+            }
+        }
+        */
 
-        for(int i = 1; i <= userTrip.getDt_list().size(); i++)
+        final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
+        String tripString = "Name: " + StartTripActivity.newTrip.getName() + "\nStart Date: " + StartTripActivity.newTrip.getStart() + "\nEnd Date: " + StartTripActivity.newTrip.getEnd() + "\n#\tDT Type\tName\n";
+
+        for(int i = 1; i <= StartTripActivity.newTrip.getDt_list().size(); i++)
         {
-            tripString += i + ".\t" + userTrip.getDt_list().get(i).getDT_Type() + "\t" + userTrip.getDt_list().get(i).getName() + "\n";
+            tripString += i + ".\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "\t" + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
         }
 
         tripInfo.setText(tripString);                                        // EDIT to insert the data
-
         //--------EDIT BUTTON--------//
         Button editButton = (Button) findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener()
