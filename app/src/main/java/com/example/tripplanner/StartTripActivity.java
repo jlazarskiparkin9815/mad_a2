@@ -32,6 +32,7 @@ public class StartTripActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_trip);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back button
 
         // Get references to UI elements and store them in data members
         mainLayout = findViewById(R.id.dtItemsPanel);
@@ -136,10 +137,16 @@ public class StartTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newTrip = null;
-                startActivity(new Intent(StartTripActivity.this, MainActivity.class));
+                finish();
             }
         });
 
         startTripBtn.setOnClickListener(new StartTripOnClickListener(StartTripActivity.this));
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){ // actionbar back button
+        finish();
+        return true;
     }
 }
