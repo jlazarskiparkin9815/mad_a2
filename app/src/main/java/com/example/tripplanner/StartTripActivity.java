@@ -126,9 +126,6 @@ public class StartTripActivity extends AppCompatActivity {
                 ParsePosition dateParse = new ParsePosition(0);
                 Date dateStartObj = dateAllFormat.parse(dateStartStr, dateParse);
 
-                // Check if the Date format is invalid and display an error message if it is
-                Trip.validateDate(StartTripActivity.this, dateStartStr);
-
                 if (dateStartObj != null) {
                     newTrip.setStart(dateStartObj);
                 }
@@ -152,10 +149,9 @@ public class StartTripActivity extends AppCompatActivity {
                 ParsePosition dateParse = new ParsePosition(0);
                 Date dateEndObj = dateAllFormat.parse(dateEndStr, dateParse);
 
-                // Check if the Date format is invalid and display an error message if it is
-                Trip.validateDate(StartTripActivity.this, dateEndStr);
-
-                newTrip.setEnd(dateEndObj);
+                if (dateEndObj != null) {
+                    newTrip.setEnd(dateEndObj);
+                }
             }
 
             @Override
@@ -181,6 +177,19 @@ public class StartTripActivity extends AppCompatActivity {
                     new AlertDialog.Builder(StartTripActivity.this)
                             .setTitle("Attention")
                             .setMessage("At least 1 destination/transit must be added prior to continuing.")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .show();
+                }
+                else if (!Trip.validateDate(dateStart.getText().toString()) && !Trip.validateDate(dateEnd.getText().toString())) {
+                    new AlertDialog.Builder(StartTripActivity.this)
+                            .setTitle("Attention")
+                            .setMessage("You must enter dates in the following format:\n\n" +
+                                    "dd/mm/yyyy")
                             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

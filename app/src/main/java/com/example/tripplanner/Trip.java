@@ -58,21 +58,15 @@ public class Trip {
                         being displayed
         RETURNS: void
         */
-        public static void validateDate(Activity displayMsgActivity, String dateStartStr) {
-                // Check if the Date format is invalid and display an error message if it is
-                if (dateStartStr.length() >= kDateLength && Pattern.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d", dateStartStr) == false) {
-                        new AlertDialog.Builder(displayMsgActivity)
-                                .setTitle("Attention")
-                                .setMessage("You must enter dates in the following format:\n\n" +
-                                            "dd/mm/yyyy")
-                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+        public static boolean validateDate(String dateStartStr) {
+                boolean result = true;
 
-                                    }
-                                })
-                                .show();
+                // Check if the Date format is invalid and display an error message if it is
+                if (Pattern.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d", dateStartStr) == false) {
+                        result = false;
                 }
+
+                return result;
         }
 
         /* ACCESSORS FOR DATA MEMBERS*/
