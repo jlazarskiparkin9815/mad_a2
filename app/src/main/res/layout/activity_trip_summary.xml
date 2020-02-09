@@ -17,33 +17,38 @@
 
     <Button
         android:id="@+id/button_restart"
-        android:layout_width="203dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="368dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="504dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/button_restart_text"
         android:textColor="@android:color/background_light"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summary_number" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.TextView
 
         android:id="@+id/summary_greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="108dp"
         android:text="@string/label_greeting"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="12pt"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/summary_number"
         app:layout_constraintStart_toStartOf="@+id/summary_number"
         app:layout_constraintTop_creator="20"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
     </android.widget.TextView>
 
@@ -51,16 +56,16 @@
         android:id="@+id/summary_number"
         android:layout_width="327dp"
         android:layout_height="222dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="188dp"
         android:text="@string/label_summary"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="12pt"
-        app:layout_constraintBottom_toTopOf="@+id/button_restart"
-        app:layout_constraintEnd_toEndOf="@+id/button_restart"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/button_restart"
-        app:layout_constraintTop_toBottomOf="@+id/summary_greeting">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01">
 
     </android.widget.TextView>
 
