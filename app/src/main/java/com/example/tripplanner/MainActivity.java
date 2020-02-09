@@ -1,3 +1,12 @@
+/*
+    FILE             : TripSummaryActivity
+    PROJECT          : PROG3150 - Assignment 1
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-02-02
+    DESCRIPTION      :
+        This screen displays the home page with a description of the application.
+*/
+
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
