@@ -10,9 +10,8 @@
 package com.example.tripplanner;
 
 import android.app.Activity;
-import android.widget.Toast;
-
-import java.io.Serializable;
+import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -62,7 +61,17 @@ public class Trip {
         public static void validateDate(Activity displayMsgActivity, String dateStartStr) {
                 // Check if the Date format is invalid and display an error message if it is
                 if (dateStartStr.length() >= kDateLength && Pattern.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d", dateStartStr) == false) {
-                        Toast.makeText(displayMsgActivity.getApplicationContext(), "Date format must be dd/mm/YYYY", Toast.LENGTH_LONG).show();
+                        new AlertDialog.Builder(displayMsgActivity)
+                                .setTitle("Attention")
+                                .setMessage("You must enter dates in the following format:\n\n" +
+                                            "dd/mm/yyyy")
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                })
+                                .show();
                 }
         }
 
