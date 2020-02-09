@@ -44,6 +44,7 @@ public class TripReview extends AppCompatActivity {
         {
             public void onClick(View v)
             {
+                finish();
                 startActivity(new Intent(TripReview.this, TripSummaryActivity.class));
             }
         });

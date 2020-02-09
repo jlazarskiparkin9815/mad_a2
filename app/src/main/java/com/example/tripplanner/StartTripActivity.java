@@ -189,6 +189,7 @@ public class StartTripActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    finish();
                     startActivity(new Intent(StartTripActivity.this, TripReview.class));
                 }
 
@@ -198,6 +199,8 @@ public class StartTripActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp(){ // actionbar back button
+        newTrip = null;
+        DT.idCounter = 0;
         finish();
         return true;
     }

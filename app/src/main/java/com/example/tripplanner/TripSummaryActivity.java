@@ -23,7 +23,7 @@ public class TripSummaryActivity extends AppCompatActivity{
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TripSummaryActivity.this, MainActivity.class));
+                finish();
             }
         });
     }

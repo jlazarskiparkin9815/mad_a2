@@ -7,37 +7,41 @@
     tools:context=".HelpActivity">
 
     <TextView
-        android:background="@drawable/text_view_border"
         android:id="@+id/textView"
+        android:textAlignment="gravity"
         android:layout_width="383dp"
-        android:layout_height="610dp"
+        android:layout_height="0dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="25dp"
+        android:background="@drawable/text_view_border"
+        android:padding="10dp"
+        android:text="@string/help_not_chosen"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="18sp"
-        android:padding="10dp"
-        android:text="@string/help_not_chosen"/>
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
         android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="14dp"
+        android:hint="@string/helpTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/helpTitle">
+        app:layout_constraintTop_toTopOf="parent">
 
         <AutoCompleteTextView
             android:id="@+id/filled_exposed_dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:editable="false"/>
+            android:editable="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
