@@ -1,3 +1,12 @@
+/*
+    FILE             : TripSummaryActivity
+    PROJECT          : PROG3150 - Assignment 1
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-02-02
+    DESCRIPTION      :
+        This screen displays helpful information on the usage of the application.
+*/
+
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +40,14 @@ public class HelpActivity extends AppCompatActivity implements TextWatcher {
         editTextFilledExposedDropdown.addTextChangedListener(this); // each time item selected, change textbox
     }
 
+    /*
+        FUNCTION: findIndex
+        DESCRIPTION: Compares indexes in an array to see if the strings match.
+        PARAMETERS: String checkArr[]: The Array to compare.
+                    String retArr[]: The array string to return.
+                    String match: The string to check and match.
+        RETURNS: String: Returns the corresponding string.
+    */
     public String findIndex(String[] checkArrr, String[] retArr, String match)
     {
         for (int i = 0; i < checkArrr.length; i++)
