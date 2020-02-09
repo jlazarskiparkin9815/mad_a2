@@ -129,7 +129,9 @@ public class StartTripActivity extends AppCompatActivity {
                 // Check if the Date format is invalid and display an error message if it is
                 Trip.validateDate(StartTripActivity.this, dateStartStr);
 
-                newTrip.setStart(dateStartObj);
+                if (dateStartObj != null) {
+                    newTrip.setStart(dateStartObj);
+                }
             }
             @Override
             public void afterTextChanged(Editable s) {

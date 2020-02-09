@@ -1,9 +1,12 @@
 /*
- * CLASS   : UIManager
- * PURPOSE : This class allows dynamically allocating UI elements.
- *           Methods are provided for creating the following elements:
- *           LinearLayout, EditText, and Spinner.
- */
+    FILE             : UIManager
+    PROJECT          : PROG3150 - Assignment 1
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-02-02
+    DESCRIPTION      :
+        This class allows dynamically allocating UI elements. Methods are provided for creating
+        the following elements: LinearLayout, EditText, and Spinner.
+*/
 
 package com.example.tripplanner;
 
