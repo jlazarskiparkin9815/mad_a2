@@ -1,13 +1,19 @@
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 
 public class TripReview extends AppCompatActivity {
 
@@ -15,28 +21,40 @@ public class TripReview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_review);
 
-        final TextView tripInfo = (TextView) findViewById(R.id.tripBox);
-        final TextView tripDeatils = (TextView) findViewById(R.id. TripDetails);
-        String tripString = "Name: " + StartTripActivity.newTrip.getName() + "\nStart Date: " + StartTripActivity.newTrip.getStart() + "\nEnd Date: " + StartTripActivity.newTrip.getEnd();
-        String tripDetailString = "\n#      DT Type            Name\n";
+        Trip newTrip = StartTripActivity.newTrip;
+        final SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
+        LinearLayout dtItemsPanel = findViewById(R.id.dtItemsPanel);
 
-        for(int i = 1; i <= StartTripActivity.newTrip.getDt_list().size(); i++)
-        {
-            tripDetailString += i + ".  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getDT_Type() + "  " + StartTripActivity.newTrip.getDt_list().get(i - 1).getName() + "\n";
+        TextView startText = new TextView(this);
+        startText.setText("- " + newTrip.getName() + " Start (" + dateAllFormat.format(newTrip.getStart()) + ") -");
+        startText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        startText.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        startText.setTextSize(24);
+        dtItemsPanel.addView(startText);
+
+        //Loops through each destination in the list.
+        for(int i = 0; i < newTrip.getDt_list().size(); i++){
+            TextView newText = new TextView(this);
+            switch(newTrip.getDt_list().get(i).getDT_Type()){
+                case DESTINATION:
+                    newText.setText("- DESTINATION -\n" + newTrip.getDt_list().get(i).getName());
+                    break;
+                case TRANSIT:
+                    newText.setText("- TRANSIT -\n" + newTrip.getDt_list().get(i).getName());
+                    break;
+            }
+            newText.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            newText.setTextSize(24);
+            newText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            dtItemsPanel.addView(newText);
         }
 
-        tripInfo.setText(tripString); // EDIT to insert the data
-        tripDeatils.setText(tripDetailString);
-        tripInfo.setText(tripString);                                        // EDIT to insert the data
-        //--------EDIT BUTTON--------//
-        Button editButton = findViewById(R.id.editButton);
-        editButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                startActivity(new Intent(TripReview.this, StartTripActivity.class));
-            }
-        });
+        TextView endText = new TextView(this);
+        endText.setText("- " + newTrip.getName() + " End (" + dateAllFormat.format(newTrip.getEnd()) + ") -");
+        endText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        endText.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        endText.setTextSize(24);
+        dtItemsPanel.addView(endText);
 
         //--------FINISH BUTTON--------//
         Button finishButton = findViewById(R.id.finishButton);
