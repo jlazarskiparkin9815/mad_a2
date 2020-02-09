@@ -9,9 +9,6 @@
 
 package com.example.tripplanner;
 
-import android.app.Activity;
-import android.content.DialogInterface;
-import androidx.appcompat.app.AlertDialog;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
