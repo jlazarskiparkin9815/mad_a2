@@ -1,5 +1,5 @@
 /*
-    FILE             : TripSummaryActivity
+    FILE             : MainActivity
     PROJECT          : PROG3150 - Assignment 1
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
     FIRST VERSION    : 2020-02-02

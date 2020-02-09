@@ -1,11 +1,12 @@
 /*
-    FILE             : TripSummaryActivity
+    FILE             : HelpActivity
     PROJECT          : PROG3150 - Assignment 1
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
     FIRST VERSION    : 2020-02-02
     DESCRIPTION      :
         This screen displays helpful information on the usage of the application.
 */
+
 
 package com.example.tripplanner;
 

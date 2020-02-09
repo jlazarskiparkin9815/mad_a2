@@ -1,11 +1,15 @@
 /*
- * CLASS   : Trip
- * PURPOSE : This class models the Trip. It contains all data related
- *           to the Trip, including: name of the trip, start date, end date,
- *           and a List of DT objects. The DT objects contain information
- *           about each Destination/Transit for the Trip (refer to DT class
- *           documentation for more information).
- */
+    FILE             : Trip
+    PROJECT          : PROG3150 - Assignment 1
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-02-02
+    DESCRIPTION      :
+        This class models the Trip. It contains all data related
+        to the Trip, including: name of the trip, start date, end date,
+        and a List of DT objects. The DT objects contain information
+        about each Destination/Transit for the Trip (refer to DT class
+        documentation for more information).
+*/
 
 package com.example.tripplanner;
 

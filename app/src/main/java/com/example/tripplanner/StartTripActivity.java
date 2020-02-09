@@ -1,9 +1,13 @@
 /*
-    CLASS: StartTripActivity
-    PURPOSE: This Activity displays the Start Trip screen. It allows
-             the user to specify the name of their Trip and a start/end
-             date. The user can also enter any number of Destinations/Transits.
- */
+    FILE             : StartTripActivity
+    PROJECT          : PROG3150 - Assignment 1
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-02-02
+    DESCRIPTION      :
+        This Activity displays the Start Trip screen. It allows
+        the user to specify the name of their Trip and a start/end
+        date. The user can also enter any number of Destinations/Transits.
+*/
 
 package com.example.tripplanner;
 

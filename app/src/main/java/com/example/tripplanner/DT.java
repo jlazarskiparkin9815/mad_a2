@@ -1,10 +1,14 @@
 /*
- * CLASS   : DT
- * PURPOSE : This is the object that's used to hold Destinations/Transits
- *           that are created in the StartTripActivity. Destinations are
- *           places that the user is staying on their Trip and Transit
- *           are methods of transportation.
- */
+    FILE             : DT
+    PROJECT          : PROG3150 - Assignment 1
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-02-02
+    DESCRIPTION      :
+        This is the object that's used to hold Destinations/Transits
+        that are created in the StartTripActivity. Destinations are
+        places that the user is staying on their Trip and Transit
+        are methods of transportation.
+*/
 
 package com.example.tripplanner;
 
@@ -16,18 +20,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Button;
-
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import java.util.Iterator;
-
-// Data members:
-//  - type (whether it's a Destination or Transit) [enum]
-//  - name (the name that the user gives the Destination/Trip)[string]
-//      Destination example: Hotel, Motel, etc.
-//      Transit: Car, Bus, or Train
 
 public class DT extends AppCompatActivity {
 
