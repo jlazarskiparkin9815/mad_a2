@@ -36,9 +36,9 @@ public class DT extends AppCompatActivity {
 
     private DT_Type type; // Whether the trip is a Destination or Transit (or not selected)
     private String name; // The name given to the Destination or Transit
-    private EditText nameBox;
-    private Spinner typeSpinner;
-    private Button delButton;
+//    private EditText nameBox;
+//    private Spinner typeSpinner;
+//    private Button delButton;
     private int dtID;
 
     /*
@@ -109,29 +109,29 @@ public class DT extends AppCompatActivity {
         mainLayout.addView(subLayout);
 
         // Create the EditText and add it to the sub-layout
-        newDT.nameBox = UIManager.createEditText(activity);
-        subLayout.addView(newDT.nameBox);
-        newDT.nameBox.setText(name);
+        final EditText nameBox = UIManager.createEditText(activity);
+        subLayout.addView(nameBox);
+        nameBox.setText(name);
 
         // Create the Spinner and add it to the sub-layout
-        newDT.typeSpinner = UIManager.createSpinner(activity);
-        subLayout.addView(newDT.typeSpinner);
+        final Spinner typeSpinner = UIManager.createSpinner(activity);
+        subLayout.addView(typeSpinner);
         switch(newtype){
             case DESTINATION:
-                newDT.typeSpinner.setSelection(0);
+                typeSpinner.setSelection(0);
                 break;
             case TRANSIT:
-                newDT.typeSpinner.setSelection(1);
+                typeSpinner.setSelection(1);
                 break;
         }
 
-        newDT.delButton = UIManager.createButton(activity);
-        subLayout.addView(newDT.delButton);
-        newDT.delButton.setTag(newDT.getID());
-        newDT.delButton.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimary));
-        newDT.delButton.setTextColor(ContextCompat.getColor(activity, R.color.design_default_color_background));
+        final Button delButton = UIManager.createButton(activity);
+        subLayout.addView(delButton);
+        delButton.setTag(newDT.getID());
+        delButton.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimary));
+        delButton.setTextColor(ContextCompat.getColor(activity, R.color.design_default_color_background));
 
-        newDT.delButton.setOnClickListener(new View.OnClickListener(){
+        delButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 for(int i = 0; i < StartTripActivity.newTrip.getDt_list().size(); i++){
@@ -147,7 +147,7 @@ public class DT extends AppCompatActivity {
         });
 
         // Add a listener for the EditText
-        newDT.nameBox.addTextChangedListener(new TextWatcher() {
+        nameBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -156,7 +156,7 @@ public class DT extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
                 // Update the name of the DT object
-                newDT.name = newDT.nameBox.getText().toString();
+                newDT.name = nameBox.getText().toString();
             }
 
             @Override
@@ -166,7 +166,7 @@ public class DT extends AppCompatActivity {
         });
 
         // Add a listener for the Spinner
-        newDT.typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
