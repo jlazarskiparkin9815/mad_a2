@@ -38,9 +38,6 @@ public class DT extends AppCompatActivity {
 
     private DT_Type type; // Whether the trip is a Destination or Transit (or not selected)
     private String name; // The name given to the Destination or Transit
-//    private EditText nameBox;
-//    private Spinner typeSpinner;
-//    private Button delButton;
     private int dtID;
 
     /*
