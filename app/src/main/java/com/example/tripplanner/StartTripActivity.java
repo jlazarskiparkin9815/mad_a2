@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static com.example.tripplanner.DT.CreateDestinationTransit;
+import static com.example.tripplanner.Trip.CreateDestinationTransit;
 
 public class StartTripActivity extends AppCompatActivity {
     private LinearLayout mainLayout; // The vertical layout that's used to hold the DT entries
@@ -55,6 +55,7 @@ public class StartTripActivity extends AppCompatActivity {
         final NestedScrollView scrollView = findViewById(R.id.dtItemsScroll);
         final TextView itemsAdded = findViewById(R.id.itemsAddedCount);
 
+        // Displays the number of DTs in the Trip (displayed on the bottom-left of the screen)
         mainLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
@@ -62,21 +63,30 @@ public class StartTripActivity extends AppCompatActivity {
             }
         });
         itemsAdded.setText(getResources().getString(R.string.itemsAddedCountStart));
-        // Create the Trip (must add DT objects to it as they get created)
-        Date defaultDate = new Date(2000, 1, 1); // tmp Date used for testing
-        if(newTrip == null){
-            newTrip = new Trip("Untitled Trip", defaultDate, defaultDate);
-        }else{
-            tripName.setText(newTrip.getName());
-            dateStart.setText(dateAllFormat.format(newTrip.getStart()));
-            dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
 
-            List<DT> tmpList = newTrip.getDt_list();
-            for(int i = 0; i < tmpList.size(); i++)
-            {
-                CreateDestinationTransit(StartTripActivity.this, mainLayout, tmpList.get(i).getName(), tmpList.get(i).getDT_Type(), tmpList.get(i).getID());
-            }
+        // Create the Trip (must add DT objects to it as they get created)
+        Date defaultDate = new Date(2000, 1, 1);
+        if(newTrip == null) {
+            newTrip = new Trip("Untitled Trip", defaultDate, defaultDate);
         }
+        /*
+        * CODE NOT CURRENTLY IN USE
+        *  - can be used to display DT objects that already exist
+        *  - use this for editing Trips
+        */
+//        else{
+//            tripName.setText(newTrip.getName());
+//            dateStart.setText(dateAllFormat.format(newTrip.getStart()));
+//            dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
+//
+//            List<DT> tmpList = newTrip.getDt_list();
+//            for(int i = 0; i < tmpList.size(); i++)
+//            {
+//                CreateDestinationTransit(StartTripActivity.this, mainLayout, tmpList.get(i).getName(),
+//                                         tmpList.get(i).getType(), tmpList.get(i).getID());
+//            }
+//        }
+        /* POSSIBLY DEAD CODE */
 
 
 
@@ -86,7 +96,8 @@ public class StartTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create the DT object and add Trip List
-                DT newDT = CreateDestinationTransit(StartTripActivity.this, mainLayout, "", DT.DT_Type.DESTINATION, -1);
+                DT newDT = CreateDestinationTransit(StartTripActivity.this, mainLayout,
+                                                    newTrip, DT.DT_Type.DESTINATION, DT.ID_NOT_SET);
                 newTrip.addDestination(newDT);
                 scrollView.fullScroll(View.FOCUS_DOWN); // scroll down
             }

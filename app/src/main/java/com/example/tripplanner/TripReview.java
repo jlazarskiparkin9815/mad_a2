@@ -40,7 +40,7 @@ public class TripReview extends AppCompatActivity {
         //Loops through each destination in the list.
         for(int i = 0; i < newTrip.getDt_list().size(); i++){
             TextView newText = new TextView(this);
-            switch(newTrip.getDt_list().get(i).getDT_Type()){
+            switch(newTrip.getDt_list().get(i).getType()){
                 case DESTINATION:
                     newText.setText("- DESTINATION -\n" + newTrip.getDt_list().get(i).getName());
                     break;

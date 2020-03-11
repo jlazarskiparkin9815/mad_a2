@@ -27,6 +27,8 @@ import java.util.Iterator;
 
 public class DT extends AppCompatActivity {
 
+    public final static int ID_NOT_SET = -1;
+
     public static int idCounter = 0;
 
     public enum DT_Type {
@@ -55,137 +57,58 @@ public class DT extends AppCompatActivity {
     }
 
     /*
-        FUNCTION: DT
+        FUNCTION: getName()
         DESCRIPTION: Accessor for 'private String name'. Allows retrieving
                      the value of the data member.
         PARAMETERS: N/A
         RETURNS: String: The value of the 'String name'.
     */
-    public String getName() {
-        return this.name;
-    }
+    public String getName() { return this.name; }
 
     /*
-        FUNCTION: DT
+        FUNCTION: getType()
         DESCRIPTION: Accessor for 'private DT_Type type'. Allows retrieving
                      the value of the data member.
         PARAMETERS: N/A
-        RETURNS: DT_Type: The value of the 'String name'.
+        RETURNS: DT_Type: The value of the 'DT_Type type'.
     */
-    public DT_Type getDT_Type() {
-        return this.type;
-    }
-    public int getID(){
-         return this.dtID;
-    }
+    public DT_Type getType() { return this.type; }
+
 
     /*
-        FUNCTION: CreateDestinationTransit()
-        DESCRIPTION: Creates a all elements needed to add a new Destination/Transit.
-                     Elements that are created include: DT object, EditText, and Spinner.
-        PARAMETERS:
-            AppCompatActivity activity: The Activity that the UI elements are being displayed on
-            LinearLayout mainLayout: The LinearLayout that contains the LinearLayout created
-                                     in this method.
-            String name: The name that's being assigned to the DT object
-            DT_Type newType: The type of DT object that's being created (either Destination or Transit)
-        RETURNS:
-            DT: The Dt object that was created
+        FUNCTION: getID()
+        DESCRIPTION: Accessor for 'private int dtID'. Allows retrieving
+                     the value of the data member.
+        PARAMETERS: N/A
+        RETURNS: int: The value of the 'int dtID'.
     */
-    public static DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, String name, DT_Type newtype, int id) {
-        // Create the DT object
-        final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
+    public int getID(){ return this.dtID; }
 
-        if (id == -1){
-            // Increments the DT id.
-            newDT.dtID = DT.idCounter;
-            DT.idCounter++;
-        }else{
-            newDT.dtID = id;
-        }
+    /*
+    FUNCTION: getName()
+    DESCRIPTION: Accessor for 'private String name'. Allows retrieving
+                 the value of the data member.
+    PARAMETERS: N/A
+    RETURNS: String: The value of the 'String name'.
+*/
+    public void setName(String newName) { this.name = newName; }
 
-        // Create the new layout and add it to the main layout
-        final LinearLayout subLayout = UIManager.createLinearLayout(activity);
-        mainLayout.addView(subLayout);
+    /*
+        FUNCTION: getType()
+        DESCRIPTION: Accessor for 'private DT_Type type'. Allows retrieving
+                     the value of the data member.
+        PARAMETERS: N/A
+        RETURNS: DT_Type: The value of the 'DT_Type type'.
+    */
+    public void setType(DT_Type newType) { this.type = newType; }
 
-        // Create the EditText and add it to the sub-layout
-        final EditText nameBox = UIManager.createEditText(activity);
-        subLayout.addView(nameBox);
-        nameBox.setText(name);
 
-        // Create the Spinner and add it to the sub-layout
-        final Spinner typeSpinner = UIManager.createSpinner(activity);
-        subLayout.addView(typeSpinner);
-        switch(newtype){
-            case DESTINATION:
-                typeSpinner.setSelection(0);
-                break;
-            case TRANSIT:
-                typeSpinner.setSelection(1);
-                break;
-        }
-
-        final Button delButton = UIManager.createButton(activity);
-        subLayout.addView(delButton);
-        delButton.setTag(newDT.getID());
-        delButton.setBackgroundColor(ContextCompat.getColor(activity, R.color.colorPrimary));
-        delButton.setTextColor(ContextCompat.getColor(activity, R.color.design_default_color_background));
-
-        delButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                for(int i = 0; i < StartTripActivity.newTrip.getDt_list().size(); i++){
-                    int tempID = StartTripActivity.newTrip.getDt_list().get(i).getID();
-                    int realID = (int)v.getTag();
-                    if(tempID == realID){
-                        StartTripActivity.newTrip.getDt_list().remove(i);
-                        break;
-                    }
-                }
-                mainLayout.removeView((View)v.getParent());
-            }
-        });
-
-        // Add a listener for the EditText
-        nameBox.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence text, int start, int before, int count) {
-                // Update the name of the DT object
-                newDT.name = nameBox.getText().toString();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        // Add a listener for the Spinner
-        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = parent.getItemAtPosition(position).toString();
-
-                // Assign to the DT_Type enum based on the selected item
-                if (selectedItem.equals("Destination")) {
-                    newDT.type = DT_Type.DESTINATION;
-                }
-                else if (selectedItem.equals("Transit")) {
-                    newDT.type = DT_Type.TRANSIT;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        return newDT;
-    }
+    /*
+        FUNCTION: getID()
+        DESCRIPTION: Accessor for 'private int dtID'. Allows retrieving
+                     the value of the data member.
+        PARAMETERS: N/A
+        RETURNS: int: The value of the 'int dtID'.
+    */
+    public void setID(int newDtID){ this.dtID = newDtID; }
 }
