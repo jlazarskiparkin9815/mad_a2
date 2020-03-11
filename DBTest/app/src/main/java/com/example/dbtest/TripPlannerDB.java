@@ -113,27 +113,28 @@ public class TripPlannerDB {
             // Open the database for reading
             openReadableDB();
 
-            Cursor c = db.query(TripPlannerDB.TRIP_TABLE, null, null,
+            Cursor cursor = db.query(TripPlannerDB.TRIP_TABLE, null, null,
                     null, null, null, null);
-            while (c.moveToNext() == true) {
+            while (cursor.moveToNext() == true) {
                 // Get dates
                 final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMMM dd HH:mm:ss z yyyy");
-                Date startDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
-                Date endDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
+                Date startDate = dateFormat.parse(cursor.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
+                Date endDate = dateFormat.parse(cursor.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
 
                 // Create the Trip object
                 Trip trip = new Trip(
-                        c.getInt(TripPlannerDB.TRIP_ID_COL),
-                        c.getString(TripPlannerDB.TRIP_NAME_COL),
+                        cursor.getInt(TripPlannerDB.TRIP_ID_COL),
+                        cursor.getString(TripPlannerDB.TRIP_NAME_COL),
                         startDate,
                         endDate,
-                        jsonToDtList(c.getString(TripPlannerDB.TRIP_DT_LIST_COL))
+                        jsonToDtList(cursor.getString(TripPlannerDB.TRIP_DT_LIST_COL))
                 );
 
                 // Add the Trip object to the list
                 tripList.add(trip);
         }
 
+        closeCursor(cursor);
         closeConnection();
         return tripList;
     }
