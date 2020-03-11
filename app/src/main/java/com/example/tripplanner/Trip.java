@@ -38,7 +38,7 @@ public class Trip {
         private String name;
         private Date startDate;
         private Date endDate;
-        private int idCounter;
+        private int dtIDCounter;
 
         /*
                 FUNCTION: Trip
@@ -101,16 +101,15 @@ public class Trip {
             RETURNS:
                 DT: The Dt object that was created
         */
-        public static DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, Trip theTrip,
-                                                  DT.DT_Type newType, int id) {
+        public DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, String name, DT.DT_Type newType, int id) {
                 // Create the DT object
-                final DT newDT = new DT(DEFAULT_DT_NAME); // Object needs to be 'final' to be accessed within the listeners
+                final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
 
                 // Assign an ID to the DT object or reuse the existing one
                 if (id == DT.ID_NOT_SET) {
                         // Increments the DT id.
-                        newDT.setID(theTrip.idCounter);
-                        theTrip.idCounter++;
+                        newDT.setID(this.dtIDCounter);
+                        this.dtIDCounter++;
                 }
                 else {
                         newDT.setID(id);
@@ -123,7 +122,7 @@ public class Trip {
                 // Create the EditText and add it to the sub-layout
                 final EditText nameBox = UIManager.createEditText(activity);
                 subLayout.addView(nameBox);
-                nameBox.setText(DEFAULT_DT_NAME);
+                nameBox.setText(name);
 
                 // Create the Spinner and add it to the sub-layout
                 final Spinner typeSpinner = UIManager.createSpinner(activity);

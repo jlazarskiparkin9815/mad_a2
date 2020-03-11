@@ -30,8 +30,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static com.example.tripplanner.Trip.CreateDestinationTransit;
-
 public class StartTripActivity extends AppCompatActivity {
     private LinearLayout mainLayout; // The vertical layout that's used to hold the DT entries
     public static Trip newTrip;
@@ -69,24 +67,22 @@ public class StartTripActivity extends AppCompatActivity {
         if(newTrip == null) {
             newTrip = new Trip("Untitled Trip", defaultDate, defaultDate);
         }
-        /*
-        * CODE NOT CURRENTLY IN USE
-        *  - can be used to display DT objects that already exist
-        *  - use this for editing Trips
-        */
-//        else{
-//            tripName.setText(newTrip.getName());
-//            dateStart.setText(dateAllFormat.format(newTrip.getStart()));
-//            dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
-//
-//            List<DT> tmpList = newTrip.getDt_list();
-//            for(int i = 0; i < tmpList.size(); i++)
-//            {
-//                CreateDestinationTransit(StartTripActivity.this, mainLayout, tmpList.get(i).getName(),
-//                                         tmpList.get(i).getType(), tmpList.get(i).getID());
-//            }
-//        }
-        /* POSSIBLY DEAD CODE */
+        else {
+            /*
+             * CODE NOT CURRENTLY IN USE
+             *  - can be used to display DT objects that already exist
+             *  - use this for editing Trips
+             */
+            tripName.setText(newTrip.getName());
+            dateStart.setText(dateAllFormat.format(newTrip.getStart()));
+            dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
+
+            List<DT> tmpList = newTrip.getDt_list();
+            for(int i = 0; i < tmpList.size(); i++)
+            {
+                newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, tmpList.get(i).getName(), tmpList.get(i).getType(), tmpList.get(i).getID());
+            }
+        }
 
 
 
@@ -96,8 +92,7 @@ public class StartTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create the DT object and add Trip List
-                DT newDT = CreateDestinationTransit(StartTripActivity.this, mainLayout,
-                                                    newTrip, DT.DT_Type.DESTINATION, DT.ID_NOT_SET);
+                DT newDT = newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, "", DT.DT_Type.DESTINATION, DT.ID_NOT_SET);
                 newTrip.addDestination(newDT);
                 scrollView.fullScroll(View.FOCUS_DOWN); // scroll down
             }
