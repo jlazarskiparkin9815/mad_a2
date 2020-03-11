@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         String[] names = new String[10];
         String[] startDates = new String[10];
         String[] endDates = new String[10];
-        String[] dt_list = new String[10];
+        ArrayList<DT> dt_list = null;
         int i = 0;
         if (c.getCount() == 0) {
             Toast.makeText(this, "Trip table is empty...", Toast.LENGTH_SHORT).show();
@@ -122,13 +122,15 @@ public class MainActivity extends AppCompatActivity {
                 names[i] = c.getString(TripPlannerDB.TRIP_NAME_COL);
                 startDates[i] = c.getString(TripPlannerDB.TRIP_START_DATE_COL);
                 endDates[i] = c.getString(TripPlannerDB.TRIP_END_DATE_COL);
-                dt_list[i] = c.getString(TripPlannerDB.TRIP_DT_LIST_COL);
+                dt_list = db.jsonToDtList(c.getString(TripPlannerDB.TRIP_DT_LIST_COL));
 
                 Toast.makeText(this, Integer.toString(ids[i]), Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, names[i], Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, startDates[i], Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, endDates[i], Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, dt_list[i], Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "id = " + dt_list.get(i).getID(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "name = " + dt_list.get(i).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "type = " + dt_list.get(i).getType().toString(), Toast.LENGTH_SHORT).show();
 
                 i++;
             }

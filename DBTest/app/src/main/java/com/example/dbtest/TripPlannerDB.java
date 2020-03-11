@@ -74,7 +74,7 @@ public class TripPlannerDB {
         String jsonObjStr = null;
         if (theTrip != null) {
             // Convert to List<DT> to a JSON object
-            jsonObjStr = createDtListJSON(theTrip);
+            jsonObjStr = dtListToJson(theTrip);
 
             // Add the Trip data to a ContentValues object
             ContentValues dbData = new ContentValues();
@@ -117,16 +117,15 @@ public class TripPlannerDB {
 
 
     // Converts a ArrayList<DT> to a JSON string
-    private String createDtListJSON(Trip theTrip) {
-        Type type = new TypeToken<ArrayList<DT>>(){}.getType();
+    private String dtListToJson(Trip theTrip) {
         Gson gsonObj = new Gson(); // Create Gson object
-        String jsonString = gsonObj.toJson(theTrip.getDt_list(), type); // this line throws an exception
+        String jsonString = gsonObj.toJson(theTrip.getDt_list(), dtListType);
 
         return jsonString;
     }
 
     // Converts a JSON string into an ArrayList<DT>
-    private ArrayList<DT> readDtListJSON(String jsonString) {
+    public ArrayList<DT> jsonToDtList(String jsonString) { // TEMPORARILY PUBLIC
         Gson gsonObj = new Gson();
         ArrayList<DT> dtList = gsonObj.fromJson(jsonString, dtListType);
 

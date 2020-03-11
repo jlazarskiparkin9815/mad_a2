@@ -24,8 +24,6 @@ public class TripPlannerDBHelper extends SQLiteOpenHelper {
 
         // Create the Trip table
         database.execSQL(TripPlannerDB.CREATE_TRIP_TABLE);
-
-        Toast.makeText(MainActivity.context, "inside onCreate()", Toast.LENGTH_SHORT).show(); // TEMPORARY
     }
 
     @Override
