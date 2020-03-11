@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -73,8 +74,7 @@ public class TripPlannerDB {
         String jsonObjStr = null;
         if (theTrip != null) {
             // Convert to List<DT> to a JSON object
-            //jsonObjStr = createDtListJSON(theTrip);  -  temporarily disabled (it throws an exception)
-            jsonObjStr = "temporary testing string"; // temporary testing string
+            jsonObjStr = createDtListJSON(theTrip);
 
             // Add the Trip data to a ContentValues object
             ContentValues dbData = new ContentValues();
@@ -97,12 +97,6 @@ public class TripPlannerDB {
             // Close the connection
             this.closeConnection();
         }
-
-        // test retrieving JSON object  -  temporarily disabled (it throws an exception)
-//        ArrayList<DT> list = readDtListJSON(jsonObjStr);
-//        for (int i = 0; i < list.size(); i++) {
-//            Toast.makeText(MainActivity.context, list.get(i).getName(), Toast.LENGTH_SHORT).show();
-//        }
 
         return rowID;
     }

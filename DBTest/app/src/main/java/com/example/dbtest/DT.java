@@ -12,10 +12,7 @@
 
 package com.example.dbtest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class DT extends AppCompatActivity {
-
+public class DT {
     transient public final static int ID_NOT_SET = -1;
 
     public enum DT_Type {
@@ -58,7 +55,6 @@ public class DT extends AppCompatActivity {
     */
     public DT_Type getType() { return this.type; }
 
-
     /*
         FUNCTION: getID()
         DESCRIPTION: Accessor for 'private int dtID'. Allows retrieving
@@ -85,7 +81,6 @@ public class DT extends AppCompatActivity {
         RETURNS: DT_Type: The value of the 'DT_Type type'.
     */
     public void setType(DT_Type newType) { this.type = newType; }
-
 
     /*
         FUNCTION: getID()
