@@ -11,7 +11,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TripPlannerDB {
     // Error codes
@@ -99,6 +104,38 @@ public class TripPlannerDB {
         }
 
         return rowID;
+    }
+
+    // Get all Trips from the database
+    public ArrayList<Trip> getAllTrips() {
+        ArrayList<Trip> tripList = new ArrayList<>();
+
+            // Open the database for reading
+            openReadableDB();
+
+            Cursor c = db.query(TripPlannerDB.TRIP_TABLE, null, null,
+                    null, null, null, null);
+            while (c.moveToNext() == true) {
+                // Get dates
+                final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMMM dd HH:mm:ss z yyyy");
+                Date startDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
+                Date endDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
+
+                // Create the Trip object
+                Trip trip = new Trip(
+                        c.getInt(TripPlannerDB.TRIP_ID_COL),
+                        c.getString(TripPlannerDB.TRIP_NAME_COL),
+                        startDate,
+                        endDate,
+                        jsonToDtList(c.getString(TripPlannerDB.TRIP_DT_LIST_COL))
+                );
+
+                // Add the Trip object to the list
+                tripList.add(trip);
+        }
+
+        closeConnection();
+        return tripList;
     }
 
     // Closes a database connection

@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 
 public class Trip {
         private ArrayList<DT> dt_list;
+        private int id;
         private String name;
         private Date startDate;
         private Date endDate;
@@ -39,6 +40,15 @@ public class Trip {
                 startDate = new_startDate;
                 endDate = new_endDate;
                 dt_list = new ArrayList<>();
+        }
+
+        // Used for retrieving Trips from the database
+        public Trip(int _id, String _name, Date _startDate, Date _endDate, ArrayList<DT> _dt_list) {
+                this.id = _id;
+                this.name = _name;
+                this.startDate = _startDate;
+                this.endDate = _endDate;
+                this.dt_list = _dt_list;
         }
 
         /*
@@ -194,6 +204,7 @@ public class Trip {
 
 
         /* ACCESSORS FOR DATA MEMBERS*/
+        public int getID() {return this.id;}
         public String getName() {return this.name;}
         public Date getStart() {return this.startDate;}
         public Date getEnd() {return this.endDate;}

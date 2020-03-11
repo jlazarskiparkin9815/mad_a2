@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -25,26 +28,27 @@ public class MainActivity extends AppCompatActivity {
                 "Trip #4",
                 "Trip #5",
         };
-        public static final Date[] startDates = {
-                new Date(2020, 3, 21),
-                new Date(2017, 10, 19),
-                new Date(1998, 7, 11),
-                new Date(1974, 1, 9),
-                new Date(2003, 5, 28),
+
+        public static final String[] startDates = {
+                "01/10/3333",
+                "02/10/3333",
+                "03/10/3333",
+                "04/10/3333",
+                "05/10/3333",
         };
-        public static final Date[] endDates = {
-                new Date(2020, 3, 28),
-                new Date(2017, 10, 31),
-                new Date(1998, 7, 22),
-                new Date(1974, 1, 15),
-                new Date(2003, 6, 03),
+        public static final String[] endDates = {
+                "01/10/3333",
+                "02/10/3333",
+                "03/10/3333",
+                "04/10/3333",
+                "05/10/3333",
         };
-        public static final DT[] dts = {
-                new DT("Test DT #1"),
-                new DT("Test DT #2"),
-                new DT("Test DT #3"),
-                new DT("Test DT #4"),
-                new DT("Test DT #5"),
+        public static final String[] dtNames = {
+                "Test DT #1",
+                "Test DT #2",
+                "Test DT #3",
+                "Test DT #4",
+                "Test DT #5",
         };
     }
     private static List<Trip> tripList;
@@ -72,13 +76,14 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < Tester.numTests; i++) {
             Trip newTrip = new Trip(
                     Tester.names[i],
-                    Tester.startDates[i],
-                    Tester.endDates[i]
+                    new SimpleDateFormat("dd/MM/yyyy").parse(Tester.startDates[i], new ParsePosition(0)),
+                    new SimpleDateFormat("dd/MM/yyyy").parse(Tester.endDates[i], new ParsePosition(0))
                     );
 
             // Add the test DT
             for (int j = 0; j < Tester.numTests; j++) {
-                newTrip.addDestination(Tester.dts[j]);
+                DT dt = newTrip.CreateDestinationTransit(this, null, Tester.dtNames[j], DT.DT_Type.DESTINATION, DT.ID_NOT_SET);
+                newTrip.addDestination(dt);
             }
 
             trips.add(newTrip);
@@ -103,41 +108,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // READING TEST  -  still need to write a method for this
-        db.openReadableDB();
-        Cursor c = db.db.query(TripPlannerDB.TRIP_TABLE, null, null,
-                null, null, null, null);
-        // display data
-        int[] ids = new int[10];
-        String[] names = new String[10];
-        String[] startDates = new String[10];
-        String[] endDates = new String[10];
-        ArrayList<DT> dt_list = null;
-        int i = 0;
-        if (c.getCount() == 0) {
-            Toast.makeText(this, "Trip table is empty...", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            while (c.moveToNext() == true) {
-                ids[i] = c.getInt(TripPlannerDB.TRIP_ID_COL);
-                names[i] = c.getString(TripPlannerDB.TRIP_NAME_COL);
-                startDates[i] = c.getString(TripPlannerDB.TRIP_START_DATE_COL);
-                endDates[i] = c.getString(TripPlannerDB.TRIP_END_DATE_COL);
-                dt_list = db.jsonToDtList(c.getString(TripPlannerDB.TRIP_DT_LIST_COL));
-
-                Toast.makeText(this, Integer.toString(ids[i]), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, names[i], Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, startDates[i], Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, endDates[i], Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "id = " + dt_list.get(i).getID(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "name = " + dt_list.get(i).getName(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "type = " + dt_list.get(i).getType().toString(), Toast.LENGTH_SHORT).show();
-
-                i++;
+        ArrayList<Trip> trips = db.getAllTrips();
+        if (trips != null) {
+            for (int i = 0; i < trips.size(); i++) {
+                Toast.makeText(this, Integer.toString(trips.get(i).getID()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, trips.get(i).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, trips.get(i).getStart().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, trips.get(i).getEnd().toString(), Toast.LENGTH_SHORT).show();
+                for (int j = 0; j < trips.get(i).getDt_list().size(); j++) {
+                    Toast.makeText(this, "id = " + trips.get(i).getDt_list().get(j).getID(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "name = " + trips.get(i).getDt_list().get(j).getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "type = " + trips.get(i).getDt_list().get(j).getType(), Toast.LENGTH_SHORT).show();
+                }
             }
         }
-
-        // Close the Cursor and database connection
-        db.closeConnection();
-        db.closeCursor(c);
+        else {
+            Toast.makeText(this, "No trips in the database...", Toast.LENGTH_SHORT);
+        }
     }
 }
