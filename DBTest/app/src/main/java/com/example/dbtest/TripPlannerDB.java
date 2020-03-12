@@ -225,7 +225,7 @@ public class TripPlannerDB {
     }
 
     // Converts a JSON string into an ArrayList<DT>
-    public ArrayList<DT> jsonToDtList(String jsonString) { // TEMPORARILY PUBLIC
+    private ArrayList<DT> jsonToDtList(String jsonString) { // TEMPORARILY PUBLIC
         Gson gsonObj = new Gson();
         ArrayList<DT> dtList = gsonObj.fromJson(jsonString, dtListType);
 

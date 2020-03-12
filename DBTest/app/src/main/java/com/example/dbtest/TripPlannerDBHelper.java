@@ -19,9 +19,6 @@ public class TripPlannerDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        // drop the database for testing
-        database.execSQL(TripPlannerDB.DROP_TRIP_TABLE);
-
         // Create the Trip table
         database.execSQL(TripPlannerDB.CREATE_TRIP_TABLE);
     }
