@@ -3,18 +3,11 @@ package com.example.dbtest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
-import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -107,9 +100,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // READING TEST  -  still need to write a method for this
+        // READING TEST
         ArrayList<Trip> trips = db.getAllTrips();
         if (trips != null) {
+            // Test displaying the data
             for (int i = 0; i < trips.size(); i++) {
                 Toast.makeText(this, Integer.toString(trips.get(i).getID()), Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, trips.get(i).getName(), Toast.LENGTH_SHORT).show();
@@ -125,5 +119,18 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "No trips in the database...", Toast.LENGTH_SHORT);
         }
+
+        // Test reading Trip by index
+        Trip t = db.getSingleTrip(1);
+        Toast.makeText(this, Integer.toString(t.getID()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, t.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, t.getStart().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, t.getEnd().toString(), Toast.LENGTH_SHORT).show();
+
+        t = db.getSingleTrip(3);
+        Toast.makeText(this, Integer.toString(t.getID()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, t.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, t.getStart().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, t.getEnd().toString(), Toast.LENGTH_SHORT).show();
     }
 }

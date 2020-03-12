@@ -5,20 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
-
+import android.database.sqlite.SQLiteException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class TripPlannerDB {
+    private static final int OPEN_SUCCESS = 1;
+    private static final int OPEN_FAIL = -1;
+
     // Error codes
     public static final int INSERT_ERROR = -1;
 
@@ -68,35 +67,51 @@ public class TripPlannerDB {
     }
 
     // Gets a SQLiteDatabase object for reading
-    public void openReadableDB() { db = dbHelper.getReadableDatabase(); } // TEMPORARILY PUBLIC
+    public int openReadableDB() {
+        int statusCode = OPEN_SUCCESS;
+
+        try {
+            db = dbHelper.getReadableDatabase();
+        }
+        catch (SQLiteException dbReadableException) {
+            statusCode = OPEN_FAIL;
+            // Log the exception
+        }
+
+        return statusCode;
+    }
+
     // Gets a SQLiteDatabase object for writing
-    public void openWritableDB() { db = dbHelper.getWritableDatabase(); } // TEMPORARILY PUBLIC
+    public int openWritableDB()
+    {
+        int statusCode = OPEN_SUCCESS;
+
+        try {
+            db = dbHelper.getWritableDatabase();
+        }
+        catch (SQLiteException dbWriteableException) {
+            statusCode = OPEN_FAIL;
+            // Log the exception
+        }
+
+        return statusCode;
+    }
 
     // Insert into the database
     public long insertTrip(Trip theTrip) {
         long rowID = 0;
 
-        String jsonObjStr = null;
         if (theTrip != null) {
-            // Convert to List<DT> to a JSON object
-            jsonObjStr = dtListToJson(theTrip);
-
-            // Add the Trip data to a ContentValues object
-            ContentValues dbData = new ContentValues();
-            dbData.put(TRIP_NAME, theTrip.getName());
-            dbData.put(TRIP_START_DATE, theTrip.getStart().toString());
-            dbData.put(TRIP_END_DATE, theTrip.getEnd().toString());
-            dbData.put(TRIP_DT_LIST, jsonObjStr);
+            ContentValues dbData = fillContentValues(theTrip);
 
             // Open database for writing
-            this.openWritableDB();
-
-            // Insert the data into the database
-            try {
-                rowID = db.insertOrThrow(TRIP_TABLE, null, dbData);
-            }
-            catch (SQLException e) {
-                // Log the exception
+            if (this.openWritableDB() == OPEN_SUCCESS) {
+                // Insert the data into the database
+                try {
+                    rowID = db.insertOrThrow(TRIP_TABLE, null, dbData);
+                } catch (SQLException e) {
+                    // Log the exception
+                }
             }
 
             // Close the connection
@@ -106,18 +121,45 @@ public class TripPlannerDB {
         return rowID;
     }
 
+    // Gets a single Trip when given an index in the database
+    public Trip getSingleTrip(int tripID) {
+        // Open the database for reading
+        openReadableDB();
+
+        // Query the database for the Trip
+        String selection = TRIP_ID + "= ?";
+        String[] selectionArgs = { Integer.toString(tripID) };
+        Cursor cursor = db.query(TRIP_TABLE, null, selection, selectionArgs,
+                null, null, null);
+
+        // Convert the Cursor to a Trip
+        Trip theTrip = null;
+        if (cursor.moveToFirst()) {
+            theTrip = cursorToTrip(cursor);
+        }
+
+        // Close connections and return the Trip
+        closeCursor(cursor);
+        closeConnection();
+        return theTrip;
+    }
+
     // Get all Trips from the database
     public ArrayList<Trip> getAllTrips() {
         ArrayList<Trip> tripList = new ArrayList<>();
 
-            // Open the database for reading
-            openReadableDB();
+        // Open the database for reading
+        openReadableDB();
 
-            Cursor cursor = db.query(TripPlannerDB.TRIP_TABLE, null, null,
-                    null, null, null, null);
-            while (cursor.moveToNext() == true) {
-                // Add the Trip object to the list
-                tripList.add(cursorToTrip(cursor));
+        // Query the database for all rows and columns in the Trip table
+        Cursor cursor = db.query(TRIP_TABLE, null, null,
+                null, null, null, null);
+        while (cursor.moveToNext() == true) {
+            // Convert Cursor to Trip
+            Trip theTrip = cursorToTrip(cursor);
+
+            // Add the Trip object to the list
+            tripList.add(theTrip);
         }
 
         closeCursor(cursor);
@@ -126,19 +168,21 @@ public class TripPlannerDB {
     }
 
     // Closes a database connection
-    public void closeConnection() { // TEMPORARILY PUBLIC
+    private void closeConnection() { // TEMPORARILY PUBLIC
         if (db != null) {
             db.close();
         }
     }
 
     // Closes a Cursor object (Cursor is used to read data)
-    public void closeCursor(Cursor c) {  // TEMPORARILY PUBLIC
+    private void closeCursor(Cursor c) {  // TEMPORARILY PUBLIC
         if (c != null) {
             c.close();
         }
     }
 
+    // Gets data from a Cursor and creates a Trip object.
+    // The Trip object is returned.
     private Trip cursorToTrip(Cursor c) {
         // Get dates
         final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMMM dd HH:mm:ss z yyyy");
@@ -153,6 +197,23 @@ public class TripPlannerDB {
                 endDate,
                 jsonToDtList(c.getString(TripPlannerDB.TRIP_DT_LIST_COL))
         );
+    }
+
+    // Fills a ContentValues object with Trip data.
+    // The ContentValues object is returned.
+    private ContentValues fillContentValues(Trip theTrip) {
+        ContentValues dbData = new ContentValues();
+
+        // Create JSON string from the dt_list
+        String jsonObjStr = dtListToJson(theTrip);
+
+        // Add the Trip data to a ContentValues object
+        dbData.put(TRIP_NAME, theTrip.getName());
+        dbData.put(TRIP_START_DATE, theTrip.getStart().toString());
+        dbData.put(TRIP_END_DATE, theTrip.getEnd().toString());
+        dbData.put(TRIP_DT_LIST, jsonObjStr);
+
+        return dbData;
     }
 
     // Converts a ArrayList<DT> to a JSON string
