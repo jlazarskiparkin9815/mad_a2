@@ -120,6 +120,29 @@ public class TripPlannerDB {
 
         return rowID;
     }
+	
+	/*
+		FUNCTION    : updateTrip()
+		DESCRIPTION : Updates a Trip in the database.
+		PARAMETERS  :
+			Trip theTrip: The Trip that's being updated
+		RETURNS     : void
+	*/
+    public void updateTrip(Trip theTrip) {
+        // Create the where clause (specifies the Trip that's being updated)
+        String whereClause = TRIP_ID + "= ?";
+        String[] whereArgs = {Integer.toString(theTrip.getID())};
+
+        // Fill a ContentValues object with data
+        ContentValues updatedData = fillContentValues(theTrip);
+
+        // Open the database for writing
+        openWritableDB();
+
+        // Update the Trip and then close the connection
+        db.update(TRIP_TABLE, updatedData, whereClause, whereArgs);
+        closeConnection();
+    }
 
     // Gets a single Trip when given an index in the database
     public Trip getSingleTrip(int tripID) {
