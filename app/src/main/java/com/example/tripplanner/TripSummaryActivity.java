@@ -31,8 +31,8 @@ public class TripSummaryActivity extends AppCompatActivity{
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StartTripActivity.newTrip.setDtIDCounter(0);
                 StartTripActivity.newTrip = null;
-                DT.idCounter = 0;
                 startActivity(new Intent(TripSummaryActivity.this, MainActivity.class));
             }
         });

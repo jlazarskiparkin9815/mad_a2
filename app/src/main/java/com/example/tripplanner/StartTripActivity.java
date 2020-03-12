@@ -165,8 +165,8 @@ public class StartTripActivity extends AppCompatActivity {
         cancelTripBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                newTrip.setDtIDCounter(0);
                 newTrip = null;
-                DT.idCounter = 0;
                 startActivity(new Intent(StartTripActivity.this, MainActivity.class));
             }
         });
@@ -212,8 +212,8 @@ public class StartTripActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp(){ // actionbar back button
+        newTrip.setDtIDCounter(0);
         newTrip = null;
-        DT.idCounter = 0;
         finish();
         return true;
     }
