@@ -12,33 +12,17 @@
 
 package com.example.tripplanner;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import java.util.Iterator;
-
-public class DT extends AppCompatActivity {
-
-    public final static int ID_NOT_SET = -1;
-
-    public static int idCounter = 0;
+public class DT {
+    transient public final static int ID_NOT_SET = -1;
 
     public enum DT_Type {
         DESTINATION,
         TRANSIT
     }
 
+    private int dtID;
     private DT_Type type; // Whether the trip is a Destination or Transit (or not selected)
     private String name; // The name given to the Destination or Transit
-    private int dtID;
 
     /*
         FUNCTION: DT
@@ -71,7 +55,6 @@ public class DT extends AppCompatActivity {
     */
     public DT_Type getType() { return this.type; }
 
-
     /*
         FUNCTION: getID()
         DESCRIPTION: Accessor for 'private int dtID'. Allows retrieving
@@ -98,7 +81,6 @@ public class DT extends AppCompatActivity {
         RETURNS: DT_Type: The value of the 'DT_Type type'.
     */
     public void setType(DT_Type newType) { this.type = newType; }
-
 
     /*
         FUNCTION: getID()
