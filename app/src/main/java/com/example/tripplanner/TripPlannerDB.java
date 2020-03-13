@@ -46,11 +46,11 @@ public class TripPlannerDB {
     // Create/drop statements
     public static final String CREATE_TRIP_TABLE =
             "CREATE TABLE " + TRIP_TABLE + " (" +
-            TRIP_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            TRIP_NAME       + " TEXT NOT NULL, " +
-            TRIP_START_DATE + " DATE, " +
-            TRIP_END_DATE   + " DATE, " +
-            TRIP_DT_LIST    + " TEXT NOT NULL);";
+                    TRIP_ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    TRIP_NAME       + " TEXT NOT NULL, " +
+                    TRIP_START_DATE + " DATE, " +
+                    TRIP_END_DATE   + " DATE, " +
+                    TRIP_DT_LIST    + " TEXT NOT NULL);";
 
     public static final String DROP_TRIP_TABLE = "DROP TABLE IF EXISTS " + TRIP_TABLE;
 
@@ -121,6 +121,29 @@ public class TripPlannerDB {
         return rowID;
     }
 
+    /*
+        FUNCTION    : updateTrip()
+        DESCRIPTION : Updates a Trip in the database.
+        PARAMETERS  :
+            Trip theTrip: The Trip that's being updated
+        RETURNS     : void
+    */
+    public void updateTrip(Trip theTrip) {
+        // Create the where clause (specifies the Trip that's being updated)
+        String whereClause = TRIP_ID + "= ?";
+        String[] whereArgs = {Integer.toString(theTrip.getID())};
+
+        // Fill a ContentValues object with data
+        ContentValues updatedData = fillContentValues(theTrip);
+
+        // Open the database for writing
+        openWritableDB();
+
+        // Update the Trip and then close the connection
+        db.update(TRIP_TABLE, updatedData, whereClause, whereArgs);
+        closeConnection();
+    }
+
     // Gets a single Trip when given an index in the database
     public Trip getSingleTrip(int tripID) {
         // Open the database for reading
@@ -186,7 +209,7 @@ public class TripPlannerDB {
     private Trip cursorToTrip(Cursor c) {
         // Get dates
         final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMMM dd HH:mm:ss z yyyy");
-        Date startDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
+        Date startDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_START_DATE_COL), new ParsePosition(0));
         Date endDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
 
         // Create the Trip object
