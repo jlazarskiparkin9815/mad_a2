@@ -3,13 +3,12 @@ package com.example.dbtest;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private static class Tester {
@@ -176,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Update the Trip
         trip.setName("UPDATED name for Trip 3 :)");
-
+        trip.setStart(new SimpleDateFormat("dd/MM/yyyy").parse("13/03/2020", new ParsePosition(0)));
+        trip.setEnd(new SimpleDateFormat("dd/MM/yyyy").parse("31/03/2020", new ParsePosition(0)));
         db.updateTrip(trip);
 
         // Get the updated trip

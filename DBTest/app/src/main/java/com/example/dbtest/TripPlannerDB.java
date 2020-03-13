@@ -209,7 +209,7 @@ public class TripPlannerDB {
     private Trip cursorToTrip(Cursor c) {
         // Get dates
         final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMMM dd HH:mm:ss z yyyy");
-        Date startDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
+        Date startDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_START_DATE_COL), new ParsePosition(0));
         Date endDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
 
         // Create the Trip object
