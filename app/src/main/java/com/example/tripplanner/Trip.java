@@ -21,24 +21,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class Trip {
-        //private static final int kDateLength = 10;
-        private static final String DEFAULT_DT_NAME = "";
-
-        private List<DT> dt_list;
+        private ArrayList<DT> dt_list;
+        private int id;
         private String name;
         private Date startDate;
         private Date endDate;
-        private int dtIDCounter;
+        transient private int dtIDCounter; // 'transient' means it won't be serialized (i.e. won't be converted to JSON)
 
         /*
                 FUNCTION: Trip
@@ -52,7 +47,16 @@ public class Trip {
                 name = new_name;
                 startDate = new_startDate;
                 endDate = new_endDate;
-                dt_list = new LinkedList<>();
+                dt_list = new ArrayList<>();
+        }
+
+        // Used for retrieving Trips from the database
+        public Trip(int _id, String _name, Date _startDate, Date _endDate, ArrayList<DT> _dt_list) {
+                this.id = _id;
+                this.name = _name;
+                this.startDate = _startDate;
+                this.endDate = _endDate;
+                this.dt_list = _dt_list;
         }
 
         /*
@@ -205,12 +209,16 @@ public class Trip {
 
 
         /* ACCESSORS FOR DATA MEMBERS*/
+        public int getID() {return this.id;}
+        public int getDtIDCounter() {return this.dtIDCounter;}
         public String getName() {return this.name;}
         public Date getStart() {return this.startDate;}
         public Date getEnd() {return this.endDate;}
-        public List<DT> getDt_list() {return this.dt_list;}
+        public ArrayList<DT> getDt_list() {return this.dt_list;}
 
         /* MUTATORS FOR DATA MEMBERS */
+        public void setID(int id) {this.id = id;}
+        public void setDtIDCounter(int dtIDCounter) {this.dtIDCounter = dtIDCounter;}
         public void setName(String name) {this.name = name;}
         public void setStart(Date date) {this.startDate = date;}
         public void setEnd(Date date) {this.endDate = date;}
