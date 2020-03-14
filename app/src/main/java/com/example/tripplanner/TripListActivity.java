@@ -1,13 +1,11 @@
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import android.app.UiModeManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,7 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class DetailListActivity extends AppCompatActivity {
+public class TripListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +58,7 @@ public class DetailListActivity extends AppCompatActivity {
         createTrip.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 StartTripActivity.newTrip = new Trip("Unknown Trip", defaultDate, defaultDate);
-                startActivity(new Intent(DetailListActivity.this, StartTripActivity.class));
+                startActivity(new Intent(TripListActivity.this, StartTripActivity.class));
             }
         });
 
