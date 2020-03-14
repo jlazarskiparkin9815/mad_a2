@@ -48,7 +48,7 @@ public class HelpActivity extends AppCompatActivity implements TextWatcher {
         {
             if (checkArrr[i].equals(match))
             {
-                Log.v("HelpActivity", "findIndex returned: " + retArr[i])
+                Log.v("HelpActivity", "findIndex returned: " + retArr[i]);
                 return retArr[i];
             }
         }
