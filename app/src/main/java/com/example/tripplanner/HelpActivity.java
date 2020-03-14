@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
@@ -47,9 +48,11 @@ public class HelpActivity extends AppCompatActivity implements TextWatcher {
         {
             if (checkArrr[i].equals(match))
             {
+                Log.v("HelpActivity", "findIndex returned: " + retArr[i])
                 return retArr[i];
             }
         }
+        Log.v("HelpActivity", "findIndex failed to return anything.");
         return "";
     }
 
@@ -68,6 +71,7 @@ public class HelpActivity extends AppCompatActivity implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count)
     {
+        Log.v("HelpActivity", "Text Changed in Help selector");
         TextView textView = findViewById(R.id.textView);
         textView.setText(findIndex(getResources().getStringArray(R.array.help_topics), getResources().getStringArray(R.array.help_desc), s.toString()));
     }
@@ -75,6 +79,7 @@ public class HelpActivity extends AppCompatActivity implements TextWatcher {
     @Override
     public boolean onSupportNavigateUp(){ // actionbar back button
         finish();
+        Log.v("HelpActivity", "Transition to MainActivity");
         return true;
     }
 
