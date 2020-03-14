@@ -202,8 +202,9 @@ public class StartTripActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    finish();
-                    startActivity(new Intent(StartTripActivity.this, TripReview.class));
+                    TripPlannerDB TripDB = new TripPlannerDB(StartTripActivity.this);
+                    TripDB.insertTrip(newTrip);
+                    startActivity(new Intent(StartTripActivity.this, DetailListActivity.class));
                 }
 
             }

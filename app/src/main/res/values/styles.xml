@@ -22,4 +22,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MaterialComponentsLight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MaterialComponentsLight.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="MaterialComponentsLight.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

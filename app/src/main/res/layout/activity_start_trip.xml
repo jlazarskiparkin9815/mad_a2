@@ -22,7 +22,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
         android:background="@color/colorPrimaryDark"
-        android:text="@string/button_startTrip"
+        android:text="@string/tripplanner_complete"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
         android:textStyle="bold"
