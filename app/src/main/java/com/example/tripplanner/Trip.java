@@ -171,7 +171,6 @@ public class Trip {
                         @Override
                         public void onTextChanged(CharSequence text, int start, int before, int count) {
                                 // Update the name of the DT object
-                                //newDT.name = nameBox.getText().toString();
                                 newDT.setName(nameBox.getText().toString());
                         }
 
@@ -189,11 +188,9 @@ public class Trip {
 
                                 // Assign to the DT_Type enum based on the selected item
                                 if (selectedItem.equals("Destination")) {
-                                        //newDT.type = DT.DT_Type.DESTINATION;
                                         newDT.setType((DT.DT_Type.DESTINATION));
                                 }
                                 else if (selectedItem.equals("Transit")) {
-                                        //newDT.type = DT.DT_Type.TRANSIT;
                                         newDT.setType((DT.DT_Type.TRANSIT));
                                 }
                         }
