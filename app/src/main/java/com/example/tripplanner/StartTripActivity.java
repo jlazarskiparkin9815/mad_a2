@@ -60,7 +60,7 @@ public class StartTripActivity extends AppCompatActivity {
         final TextView itemsAdded = findViewById(R.id.itemsAddedCount);
 
         // Get the mode (determines whether a Trip is being created or edited)
-        int mode = getIntent().getExtras().getInt(MODE_KEY);
+        final int mode = getIntent().getExtras().getInt(MODE_KEY);
         if (mode == CREATE_MODE) {
             // Create the Trip (must add DT objects to it as they get created)
             Date defaultDate = new Date(2000, 1, 1);
@@ -200,10 +200,14 @@ public class StartTripActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    // Insert the Trip into the database
                     TripPlannerDB TripDB = new TripPlannerDB(StartTripActivity.this);
-                    TripDB.insertTrip(newTrip);
-
+                    if (mode == CREATE_MODE) {
+                        // Insert the Trip into the database
+                        TripDB.insertTrip(newTrip);
+                    }
+                    else if (mode == EDIT_MODE) {
+                        TripDB.updateTrip(newTrip);
+                    }
                     // Navigate to the TripListActivity
                     startActivity(new Intent(StartTripActivity.this, TripListActivity.class));
                 }
