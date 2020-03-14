@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,14 +32,16 @@ import java.util.Date;
 import java.util.List;
 
 public class StartTripActivity extends AppCompatActivity {
+    private static Activity activity;
     private LinearLayout mainLayout; // The vertical layout that's used to hold the DT entries
-    public static Trip newTrip;
+    public Trip newTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_trip);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back button
+        activity = this;
 
         // Get references to UI elements and store them in data members
         mainLayout = findViewById(R.id.dtItemsPanel);
@@ -80,7 +83,7 @@ public class StartTripActivity extends AppCompatActivity {
             List<DT> tmpList = newTrip.getDt_list();
             for(int i = 0; i < tmpList.size(); i++)
             {
-                newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, tmpList.get(i).getName(), tmpList.get(i).getType(), tmpList.get(i).getID());
+                newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, newTrip, tmpList.get(i).getName(), tmpList.get(i).getType(), tmpList.get(i).getID());
             }
         }
 
@@ -92,7 +95,7 @@ public class StartTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create the DT object and add Trip List
-                DT newDT = newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, "", DT.DT_Type.DESTINATION, DT.ID_NOT_SET);
+                DT newDT = newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, newTrip, "", DT.DT_Type.DESTINATION, DT.ID_NOT_SET);
                 newTrip.addDestination(newDT);
                 scrollView.fullScroll(View.FOCUS_DOWN); // scroll down
             }

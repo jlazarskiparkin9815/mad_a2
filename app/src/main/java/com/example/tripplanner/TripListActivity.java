@@ -57,7 +57,7 @@ public class TripListActivity extends AppCompatActivity {
         Button createTrip = (Button) findViewById(R.id.buttonCreateTrip);
         createTrip.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                StartTripActivity.newTrip = new Trip("Unknown Trip", defaultDate, defaultDate);
+                //startTripActivity.newTrip = new Trip("Unknown Trip", defaultDate, defaultDate);
                 startActivity(new Intent(TripListActivity.this, StartTripActivity.class));
             }
         });

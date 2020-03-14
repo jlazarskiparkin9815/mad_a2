@@ -113,7 +113,7 @@ public class Trip implements Serializable {
             RETURNS:
                 DT: The Dt object that was created
         */
-        public DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, String name, DT.DT_Type newType, int id) {
+        public DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, final Trip theTrip, String name, DT.DT_Type newType, int id) {
                 // Create the DT object
                 final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
 
@@ -157,11 +157,11 @@ public class Trip implements Serializable {
                 delButton.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {
-                                for(int i = 0; i < StartTripActivity.newTrip.getDt_list().size(); i++){
-                                        int tempID = StartTripActivity.newTrip.getDt_list().get(i).getID();
+                                for(int i = 0; i < theTrip.getDt_list().size(); i++){
+                                        int tempID = theTrip.getDt_list().get(i).getID();
                                         int realID = (int)v.getTag();
                                         if(tempID == realID){
-                                                StartTripActivity.newTrip.getDt_list().remove(i);
+                                                theTrip.getDt_list().remove(i);
                                                 break;
                                         }
                                 }
@@ -224,7 +224,7 @@ public class Trip implements Serializable {
                                 that's needed to save the '.ser' file.
                 RETURNS: N/A
         */
-        public void serializeTrip(Trip theTrip, Activity activity) {
+        public static void serializeTrip(Trip theTrip, Activity activity) {
                 try {
                         // Open streams
                         FileOutputStream fos = new FileOutputStream(activity.getFilesDir().getPath() + SERIALIZATION_FILENAME);
@@ -254,7 +254,7 @@ public class Trip implements Serializable {
                 RETURNS:
                         Trip theTrip: The Trip object that was deserialized.
         */
-        public Trip deserializeTrip(Activity activity) {
+        public static Trip deserializeTrip(Activity activity) {
                 Trip theTrip = null;
 
                 try {
