@@ -1,6 +1,7 @@
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +40,7 @@ public class TripListActivity extends AppCompatActivity {
             tripText.setText(newTrip.getName());
             tripText.setWidth(UIManager.calcDP(tripText, 240));
             tripText.setGravity(Gravity.CENTER);
+            tripText.setTextSize(20);
 
             Button tripView = new Button(this);
             tripView.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,8 @@ public class TripListActivity extends AppCompatActivity {
                 }
             });
             tripView.setText(R.string.button_view);
+            tripView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            tripView.setTextColor(ContextCompat.getColor(this, R.color.design_default_color_background));
 
             Button tripEdit = new Button(this);
             tripEdit.setOnClickListener(new View.OnClickListener() {
@@ -65,15 +69,16 @@ public class TripListActivity extends AppCompatActivity {
                 }
             });
             tripEdit.setText(R.string.button_edit);
+            tripEdit.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            tripEdit.setTextColor(ContextCompat.getColor(this, R.color.design_default_color_background));
 
             mainLayout.addView(subLayout);
             subLayout.addView(tripText);
             subLayout.addView(tripView);
             subLayout.addView(tripEdit);
+            subLayout.setPadding(0, 16, 0, 0);
 
         }
-
-        final Date defaultDate = new Date(2000, 1, 1);
 
         /* CREATE BUTTON */
         Button createTrip = (Button) findViewById(R.id.buttonCreateTrip);

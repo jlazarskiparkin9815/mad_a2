@@ -276,6 +276,10 @@ public class Trip implements Serializable {
                 return theTrip;
         }
 
+        public void clearDTs(){
+                dt_list.clear();
+        }
+
         /* ACCESSORS FOR DATA MEMBERS*/
         public int getID() {return this.id;}
         public int getDtIDCounter() {return this.dtIDCounter;}
