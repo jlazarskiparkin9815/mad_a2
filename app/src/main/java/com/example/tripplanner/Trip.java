@@ -276,6 +276,14 @@ public class Trip implements Serializable {
                 return theTrip;
         }
 
+        /*
+                FUNCTION: clearDTs
+                DESCRIPTION: Clears the list of DTs from the trip class.
+                PARAMETERS:
+                        N/A
+                RETURNS:
+                        N/A
+        */
         public void clearDTs(){
                 dt_list.clear();
         }
