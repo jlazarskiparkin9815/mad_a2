@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -74,9 +75,7 @@ public class TripListActivity extends AppCompatActivity {
         createTrip.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 // Navigate to the StartTripActivity and send a code that tells it to create a Trip
-                Intent intent = new Intent(TripListActivity.this, StartTripActivity.class);
-                intent.putExtra(StartTripActivity.MODE_KEY, StartTripActivity.CREATE_MODE);
-                startActivity(intent);
+                UIManager.navigateAndSendMode(TripListActivity.this, StartTripActivity.class, StartTripActivity.CREATE_MODE);
             }
         });
     }

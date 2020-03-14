@@ -10,6 +10,8 @@
 
 package com.example.tripplanner;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -97,5 +99,12 @@ public class UIManager {
         newButton.setText("X");
 
         return newButton;
+    }
+
+
+    public static void navigateAndSendMode(Activity source, Class destination, int mode) {
+        Intent intent = new Intent(source, destination);
+        intent.putExtra(StartTripActivity.MODE_KEY, mode);
+        source.startActivity(intent);
     }
 }
