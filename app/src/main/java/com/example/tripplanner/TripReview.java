@@ -12,11 +12,13 @@ package com.example.tripplanner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import java.text.SimpleDateFormat;
 
@@ -72,9 +74,11 @@ public class TripReview extends AppCompatActivity {
                 startActivity(new Intent(TripReview.this, TripSummaryActivity.class));
             }
         });
-
     }
 
-
-
+    //------Hotel Search----//
+    public void browserRedirect(View view) {
+        Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.trivago.ca/"));
+        startActivity(browserIntent);
+    }
 }

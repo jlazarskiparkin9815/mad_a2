@@ -72,6 +72,7 @@
     <string name="button_edit">Edit</string>
     <string name="tripplanner_create">Create Trip</string>
     <string name="tripplanner_complete">Complete</string>
+    <string name="bookDT">Hotels</string>
 
 
 </resources>
