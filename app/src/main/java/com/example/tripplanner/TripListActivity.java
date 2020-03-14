@@ -29,9 +29,9 @@ public class TripListActivity extends AppCompatActivity {
         TripPlannerDB TripDB = new TripPlannerDB(this);
         ArrayList<Trip> TripList = TripDB.getAllTrips();
 
-        for(Iterator<Trip> trip = TripList.iterator(); trip.hasNext();){
+        for(int i = 0; i < TripList.size(); i++) {
 
-            Trip newTrip = trip.next();
+            Trip newTrip = TripList.get(i);
 
             LinearLayout mainLayout = findViewById(R.id.tripList);
             LinearLayout subLayout = UIManager.createLinearLayout(this);
@@ -45,8 +45,10 @@ public class TripListActivity extends AppCompatActivity {
             tripView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Serialize the Trip that's being viewed
-                    Toast.makeText(v.getContext(), "View clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "View clicked", Toast.LENGTH_SHORT).show(); // TEMPORARY DEBUGGING
+
+                    // Serialize the Trip that's being viewed (call the serializeTrip() method, it's in the Trip class)
+
                     // Navigate to the TripReview activity
                 }
             });
@@ -56,7 +58,9 @@ public class TripListActivity extends AppCompatActivity {
             tripEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "Edit clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Edit clicked", Toast.LENGTH_SHORT).show(); // TEMPORARY DEBUGGING
+
+
                 }
             });
             tripEdit.setText(R.string.button_edit);

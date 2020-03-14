@@ -67,11 +67,9 @@ public class StartTripActivity extends AppCompatActivity {
             newTrip = new Trip("Untitled Trip", defaultDate, defaultDate);
         }
         else if (mode == EDIT_MODE){
-            /*
-             * CODE NOT CURRENTLY IN USE
-             *  - can be used to display DT objects that already exist
-             *  - use this for editing Trips
-             */
+            // Deserialize the Trip (call the deserializeTrip() method, it's in the Trip class)
+
+            // Display the data from the Trip object
             tripName.setText(newTrip.getName());
             dateStart.setText(dateAllFormat.format(newTrip.getStart()));
             dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
