@@ -26,7 +26,8 @@ public class TripReview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_review);
 
-        Trip newTrip = null; /*StartTripActivity.newTrip;*/ // TEMPORARY COMMENT OUT
+        Trip newTrip = Trip.deserializeTrip(this);
+
         final SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
         LinearLayout dtItemsPanel = findViewById(R.id.dtItemsPanel);
 

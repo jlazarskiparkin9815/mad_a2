@@ -25,15 +25,14 @@ public class TripListActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Trip List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        LinearLayout mainLayout = findViewById(R.id.tripList);
 
         TripPlannerDB TripDB = new TripPlannerDB(this);
         ArrayList<Trip> TripList = TripDB.getAllTrips();
 
         for(int i = 0; i < TripList.size(); i++) {
+            final Trip newTrip = TripList.get(i);
 
-            Trip newTrip = TripList.get(i);
-
-            LinearLayout mainLayout = findViewById(R.id.tripList);
             LinearLayout subLayout = UIManager.createLinearLayout(this);
 
             TextView tripText = new TextView(this);
@@ -45,11 +44,11 @@ public class TripListActivity extends AppCompatActivity {
             tripView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "View clicked", Toast.LENGTH_SHORT).show(); // TEMPORARY DEBUGGING
-
                     // Serialize the Trip that's being viewed (call the serializeTrip() method, it's in the Trip class)
+                    Trip.serializeTrip(newTrip, TripListActivity.this);
 
                     // Navigate to the TripReview activity
+                    startActivity(new Intent(TripListActivity.this, TripReview.class));
                 }
             });
             tripView.setText(R.string.button_view);
