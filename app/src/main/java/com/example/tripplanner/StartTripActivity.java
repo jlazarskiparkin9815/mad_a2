@@ -191,6 +191,7 @@ public class StartTripActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (newTrip.getDt_list().size() == 0)
                 {
+                    Log.v("StartTripActivity", "User attempted to proceed with zero items.");
                     new AlertDialog.Builder(StartTripActivity.this)
                             .setTitle("Attention")
                             .setMessage("At least 1 destination/transit must be added prior to continuing.")
@@ -203,6 +204,7 @@ public class StartTripActivity extends AppCompatActivity {
                             .show();
                 }
                 else if (!Trip.validateDate(dateStart.getText().toString()) && !Trip.validateDate(dateEnd.getText().toString())) {
+                    Log.v("StartTripActivity", "User attempted to proceed with an invalid date.");
                     new AlertDialog.Builder(StartTripActivity.this)
                             .setTitle("Attention")
                             .setMessage("You must enter dates in the following format:\n\n" +
@@ -239,6 +241,7 @@ public class StartTripActivity extends AppCompatActivity {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 itemsAdded.setText(getItemsAddedStr());
+                Log.v("StartTripActivity", "Items added changed to " + getItemsAddedStr());
             }
         });
         itemsAdded.setText(getResources().getString(R.string.itemsAddedCountStart));
