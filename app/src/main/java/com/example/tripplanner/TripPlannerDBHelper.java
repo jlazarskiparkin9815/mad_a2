@@ -13,9 +13,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class TripPlannerDBHelper extends SQLiteOpenHelper {
-<<<<<<< HEAD
-
-=======
     /*
         FUNCTION    : TripPlannerDBHelper()
         DESCRIPTION :
@@ -28,7 +25,6 @@ public class TripPlannerDBHelper extends SQLiteOpenHelper {
             int version: The database version
         RETURNS     : N/A
     */
->>>>>>> 76092cec7c6b10e0bb8758614b7b35d96767715d
     public TripPlannerDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
