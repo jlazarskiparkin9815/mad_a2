@@ -1,8 +1,8 @@
 /*
     FILE             : TripSummaryActivity
-    PROJECT          : PROG3150 - Assignment 1
+    PROJECT          : PROG3150 - Assignment 2
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
-    FIRST VERSION    : 2020-02-02
+    FIRST VERSION    : 2020-03-09
     DESCRIPTION      :
         This screen displays a message that tells the user that they've arrived at their
         destination and then allows them to go back to the MainActivity.
