@@ -4,25 +4,15 @@
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
     FIRST VERSION    : 2020-03-09
     DESCRIPTION      :
-        This file communicates with the database within Android.
+        This file communicates with the database within Android. This database is created by
+        and only accessed by this application. This class uses the DBHelper class to open
+        reading/writing connections to the database.
 */
 
 package com.example.tripplanner;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-/*
-    FILE             : DT
-    PROJECT          : PROG3150 - Assignment 1
-    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
-    FIRST VERSION    : 2020-02-02
-    DESCRIPTION      :
-        This is the object that's used to hold Destinations/Transits
-        that are created in the StartTripActivity. Destinations are
-        places that the user is staying on their Trip and Transit
-        are methods of transportation.
-*/
-
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -74,19 +64,36 @@ public class TripPlannerDB {
 
     public static final String DROP_TRIP_TABLE = "DROP TABLE IF EXISTS " + TRIP_TABLE;
 
-    // Database and DBHelper
     public SQLiteDatabase db; // Allows opening database connections and executing queries // TEMPORARILY PUBLIC
     private TripPlannerDBHelper dbHelper; // Used to create the database
     private Type dtListType;
 
-    // Constructor for the TripPlannerDB class
+
+    /*
+        FUNCTION    : TripPlannerDB()
+        DESCRIPTION : Constructor for the TripPlannerDB class.
+        PARAMETERS  :
+            Context context: Provides information about the application
+                environment. Use the getApplicationContext() method when
+                calling this method and pass the return value for this
+                parameter.
+        RETURNS     : N/A
+    */
     public TripPlannerDB(Context context) {
         // Create the database helper object
         dbHelper = new TripPlannerDBHelper(context, DB_NAME, null, DB_VERSION);
         dtListType = new TypeToken<ArrayList<DT>>(){}.getType();
     }
 
-    // Gets a SQLiteDatabase object for reading
+    /*
+        FUNCTION    : openWritableDB()
+        DESCRIPTION : Gets a SQLiteDatabase object for reading.
+        PARAMETERS  :
+            none
+        RETURNS     :
+            int statusCode: OPEN_SUCCESS if the database connection was
+                opened successfully, and OPEN_FAIL if it wasn't.
+    */
     public int openReadableDB() {
         int statusCode = OPEN_SUCCESS;
 
@@ -101,6 +108,15 @@ public class TripPlannerDB {
         return statusCode;
     }
 
+    /*
+        FUNCTION    : openWritableDB()
+        DESCRIPTION : Opens the database connection for writing.
+        PARAMETERS  :
+            none
+        RETURNS     :
+            int statusCode: OPEN_SUCCESS if the database connection was
+                opened successfully, and OPEN_FAIL if it wasn't.
+    */
     // Gets a SQLiteDatabase object for writing
     public int openWritableDB()
     {
@@ -117,7 +133,14 @@ public class TripPlannerDB {
         return statusCode;
     }
 
-    // Insert into the database
+    /*
+        FUNCTION    : insertTrip()
+        DESCRIPTION : Inserts a Trip into the database.
+        PARAMETERS  :
+            Trip theTrip: The Trip object that's being inserted.
+        RETURNS     :
+            long rowID: The row ID of the Trip that was inserted.
+    */
     public long insertTrip(Trip theTrip) {
         long rowID = 0;
 
@@ -146,7 +169,7 @@ public class TripPlannerDB {
         DESCRIPTION : Updates a Trip in the database.
         PARAMETERS  :
             Trip theTrip: The Trip that's being updated
-        RETURNS     : void
+        RETURNS     : N/A
     */
     public void updateTrip(Trip theTrip) {
         // Create the where clause (specifies the Trip that's being updated)
@@ -169,7 +192,7 @@ public class TripPlannerDB {
         DESCRIPTION : Deletes a Trip from the database.
         PARAMETERS  :
             int id: The ID of the Trip that's being deleted.
-        RETURNS     : void
+        RETURNS     : N/A
     */
     public void deleteTrip(int id) {
         // Create the where clause (specifies the Trip that's being deleted)
@@ -184,30 +207,16 @@ public class TripPlannerDB {
         closeConnection();
     }
 
-    // Gets a single Trip when given an index in the database
-    public Trip getSingleTrip(int tripID) {
-        // Open the database for reading
-        openReadableDB();
-
-        // Query the database for the Trip
-        String selection = TRIP_ID + "= ?";
-        String[] selectionArgs = { Integer.toString(tripID) };
-        Cursor cursor = db.query(TRIP_TABLE, null, selection, selectionArgs,
-                null, null, null);
-
-        // Convert the Cursor to a Trip
-        Trip theTrip = null;
-        if (cursor.moveToFirst()) {
-            theTrip = cursorToTrip(cursor);
-        }
-
-        // Close connections and return the Trip
-        closeCursor(cursor);
-        closeConnection();
-        return theTrip;
-    }
-
-    // Get all Trips from the database
+    /*
+        FUNCTION    : getAllTrips()
+        DESCRIPTION : Get all Trips from the database.
+            The Trips are returned as an ArrayList.
+        PARAMETERS  :
+            none
+        RETURNS     :
+            ArrayList<Trip> tripList: The list of Trips that
+                was pulled from the database.
+    */
     public ArrayList<Trip> getAllTrips() {
         ArrayList<Trip> tripList = new ArrayList<>();
 
@@ -230,22 +239,42 @@ public class TripPlannerDB {
         return tripList;
     }
 
-    // Closes a database connection
-    private void closeConnection() { // TEMPORARILY PUBLIC
+    /*
+        FUNCTION    : closeConnection()
+        DESCRIPTION : Closes a database connection.
+        PARAMETERS  : void
+        RETURNS     : N/A
+    */
+    private void closeConnection() {
         if (db != null) {
             db.close();
         }
     }
 
-    // Closes a Cursor object (Cursor is used to read data)
+    /*
+        FUNCTION    : closeCursor()
+        DESCRIPTION : Closes a Cursor object (a Cursor object is
+            used to read data from the database).
+        PARAMETERS  :
+            Cursor c: The Cursor object that's being closed.
+        RETURNS     : N/A
+    */
     private void closeCursor(Cursor c) {  // TEMPORARILY PUBLIC
         if (c != null) {
             c.close();
         }
     }
 
-    // Gets data from a Cursor and creates a Trip object.
-    // The Trip object is returned.
+    /*
+        FUNCTION    : cursorToTrip()
+        DESCRIPTION :
+            Gets data from a Cursor and creates a Trip object.
+            The Trip object is returned.
+        PARAMETERS  :
+            Cursor c: Contains data pulled from the database.
+        RETURNS     :
+            Trip: The Trip object that was created from the data in 'Cursor c'.
+    */
     private Trip cursorToTrip(Cursor c) {
         // Get dates
         final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMMM dd HH:mm:ss z yyyy");
@@ -262,8 +291,19 @@ public class TripPlannerDB {
         );
     }
 
-    // Fills a ContentValues object with Trip data.
-    // The ContentValues object is returned.
+    /*
+        FUNCTION    : fillContentValues()
+        DESCRIPTION :
+            Fills a ContentValues object with Trip data.
+            ContentValues objects are used to insert data into the
+            database (i.e. update rows and columns).
+        PARAMETERS  :
+            Trip theTrip: The Trip data that's being used to
+                fill the ContentValues object.
+        RETURNS     :
+            ContentValues dbData: The ContentValues object that was
+                created.
+    */
     private ContentValues fillContentValues(Trip theTrip) {
         ContentValues dbData = new ContentValues();
 
@@ -279,7 +319,16 @@ public class TripPlannerDB {
         return dbData;
     }
 
-    // Converts a ArrayList<DT> to a JSON string
+    /*
+        FUNCTION    : dtListToJson()
+        DESCRIPTION : Converts a ArrayList<DT> to a JSON string.
+        PARAMETERS  :
+            Trip theTrip: The Trip object that's being converted
+                to a JSON string.
+        RETURNS     :
+            String jsonString: The JSON string which contains
+                the Trips dt_list.
+    */
     private String dtListToJson(Trip theTrip) {
         Gson gsonObj = new Gson(); // Create Gson object
         String jsonString = gsonObj.toJson(theTrip.getDt_list(), dtListType);
@@ -287,7 +336,15 @@ public class TripPlannerDB {
         return jsonString;
     }
 
-    // Converts a JSON string into an ArrayList<DT>
+    /*
+        FUNCTION    : jsonToDtList()
+        DESCRIPTION : Converts a JSON string into an ArrayList<DT>.
+        PARAMETERS  :
+            String jsonString: The JSON string that's being converted
+                to ArrayList<DT>.
+        RETURNS     :
+            ArrayList<DT>: The list of DT objects
+    */
     private ArrayList<DT> jsonToDtList(String jsonString) { // TEMPORARILY PUBLIC
         Gson gsonObj = new Gson();
         ArrayList<DT> dtList = gsonObj.fromJson(jsonString, dtListType);
