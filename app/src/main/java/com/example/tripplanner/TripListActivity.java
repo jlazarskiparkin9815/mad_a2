@@ -57,9 +57,11 @@ public class TripListActivity extends AppCompatActivity {
             tripEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "Edit clicked", Toast.LENGTH_SHORT).show(); // TEMPORARY DEBUGGING
+                    // Serialize the Trip that's being viewed (call the serializeTrip() method, it's in the Trip class)
+                    Trip.serializeTrip(newTrip, TripListActivity.this);
 
-
+                    // Navigate to the TripReview activity
+                    UIManager.navigateAndSendMode(TripListActivity.this, StartTripActivity.class, StartTripActivity.EDIT_MODE);
                 }
             });
             tripEdit.setText(R.string.button_edit);

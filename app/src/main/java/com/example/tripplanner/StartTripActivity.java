@@ -68,6 +68,7 @@ public class StartTripActivity extends AppCompatActivity {
         }
         else if (mode == EDIT_MODE){
             // Deserialize the Trip (call the deserializeTrip() method, it's in the Trip class)
+            newTrip = Trip.deserializeTrip(this);
 
             // Display the data from the Trip object
             tripName.setText(newTrip.getName());
