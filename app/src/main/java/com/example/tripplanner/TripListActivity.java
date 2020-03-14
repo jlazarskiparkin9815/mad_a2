@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TripListActivity extends AppCompatActivity {
 
@@ -40,10 +41,24 @@ public class TripListActivity extends AppCompatActivity {
             tripText.setGravity(Gravity.CENTER);
 
             Button tripView = new Button(this);
-            tripView.setText("View");
+            tripView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Serialize the Trip that's being viewed
+                    Toast.makeText(v.getContext(), "View clicked", Toast.LENGTH_SHORT).show();
+                    // Navigate to the TripReview activity
+                }
+            });
+            tripView.setText(R.string.button_view);
 
             Button tripEdit = new Button(this);
-            tripEdit.setText("Edit");
+            tripEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "Edit clicked", Toast.LENGTH_SHORT).show();
+                }
+            });
+            tripEdit.setText(R.string.button_edit);
 
             mainLayout.addView(subLayout);
             subLayout.addView(tripText);
@@ -62,26 +77,6 @@ public class TripListActivity extends AppCompatActivity {
                 Intent intent = new Intent(TripListActivity.this, StartTripActivity.class);
                 intent.putExtra(StartTripActivity.MODE_KEY, StartTripActivity.CREATE_MODE);
                 startActivity(intent);
-            }
-        });
-
-        /* VIEW BUTTON */
-        Button viewButton = findViewById(R.id.buttonView);
-        viewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Serialize the Trip that's being viewed
-
-                // Navigate to the TripReview activity
-            }
-        });
-
-        /* EDIT BUTTON */
-        Button editButton = findViewById(R.id.buttonEdit);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
     }

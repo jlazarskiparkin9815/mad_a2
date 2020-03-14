@@ -7,6 +7,7 @@
         This file contains all strings being used in the application.
 -->
 <resources>
+    <!--MainActivity-->
     <string name="app_name">Trip Planner</string>
     <string name="tripplanner_title">Welcome!</string>
     <string name="tripplanner_help">Help</string>
@@ -14,6 +15,7 @@
     <string name="tripplanner_name">to Trip Planner</string>
     <string name="tripplanner_description">Trip Planner is an organizational tool used to help keep track of destinations on your trip. Trip Planner can tell you where you\'re going and how to get there. Press Begin to get started!</string>
 
+    <!--Help Activity-->
     <string name="helpTitle">Help Topic</string>
     <string-array name="help_topics">
         <item>Trip Planner</item>
@@ -33,7 +35,7 @@
         </item>
     </string-array>
 
-    <!-- Start Trip Activity -->
+    <!-- StartTripActivity -->
     <string name="button_startTrip">Start Trip</string>
     <string name="button_add">Add</string>
     <string name="dt_msg">Enter Name</string>
@@ -54,7 +56,6 @@
         <item>Destination</item>
         <item>Transit</item>
     </string-array>
-
     <string name="itemsAddedCountSuffix">items added.</string>
     <string name="itemsAddedCountStart">No items added.</string>
 
@@ -64,13 +65,11 @@
         Please click the button below to return to the main menu and plan another trip.</string>
     <string name="button_restart_text">Main Menu</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--TripListActivity-->
     <string name="tripplanner_default">Unknown Trip</string>
-    <string name="tripplanner_view" />
-    <string name="tripplanner_view2">View</string>
-    <string name="tripplanner_edit">Edit</string>
     <string name="title_activity_trip_list">TripListActivity</string>
+    <string name="button_view">View</string>
+    <string name="button_edit">Edit</string>
     <string name="tripplanner_create">Create Trip</string>
     <string name="tripplanner_complete">Complete</string>
 
