@@ -22,11 +22,11 @@ import java.text.SimpleDateFormat;
 
 public class TripReview extends AppCompatActivity {
 
-    protected void onCreate(Bundle savedInstanceState/*, Trip userTrip*/) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_review);
 
-        Trip newTrip = StartTripActivity.newTrip;
+        Trip newTrip = null; /*StartTripActivity.newTrip;*/ // TEMPORARY COMMENT OUT
         final SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
         LinearLayout dtItemsPanel = findViewById(R.id.dtItemsPanel);
 

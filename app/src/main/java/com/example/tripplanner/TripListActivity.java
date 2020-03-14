@@ -54,13 +54,35 @@ public class TripListActivity extends AppCompatActivity {
 
         final Date defaultDate = new Date(2000, 1, 1);
 
+        /* CREATE BUTTON */
         Button createTrip = (Button) findViewById(R.id.buttonCreateTrip);
         createTrip.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //startTripActivity.newTrip = new Trip("Unknown Trip", defaultDate, defaultDate);
-                startActivity(new Intent(TripListActivity.this, StartTripActivity.class));
+                // Navigate to the StartTripActivity and send a code that tells it to create a Trip
+                Intent intent = new Intent(TripListActivity.this, StartTripActivity.class);
+                intent.putExtra(StartTripActivity.MODE_KEY, StartTripActivity.CREATE_MODE);
+                startActivity(intent);
             }
         });
 
+        /* VIEW BUTTON */
+        Button viewButton = findViewById(R.id.buttonView);
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Serialize the Trip that's being viewed
+
+                // Navigate to the TripReview activity
+            }
+        });
+
+        /* EDIT BUTTON */
+        Button editButton = findViewById(R.id.buttonEdit);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }

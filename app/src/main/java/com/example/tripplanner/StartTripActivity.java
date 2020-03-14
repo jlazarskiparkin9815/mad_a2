@@ -32,16 +32,19 @@ import java.util.Date;
 import java.util.List;
 
 public class StartTripActivity extends AppCompatActivity {
-    private static Activity activity;
     private LinearLayout mainLayout; // The vertical layout that's used to hold the DT entries
     public Trip newTrip;
+
+    // Activity modes (creating a Trip, or editing a Trip)
+    public final static String MODE_KEY = "mode";
+    public final static int CREATE_MODE = 1;
+    public final static int EDIT_MODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_trip);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back button
-        activity = this;
 
         // Get references to UI elements and store them in data members
         mainLayout = findViewById(R.id.dtItemsPanel);
@@ -56,21 +59,14 @@ public class StartTripActivity extends AppCompatActivity {
         final NestedScrollView scrollView = findViewById(R.id.dtItemsScroll);
         final TextView itemsAdded = findViewById(R.id.itemsAddedCount);
 
-        // Displays the number of DTs in the Trip (displayed on the bottom-left of the screen)
-        mainLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                itemsAdded.setText(getItemsAddedStr());
-            }
-        });
-        itemsAdded.setText(getResources().getString(R.string.itemsAddedCountStart));
-
-        // Create the Trip (must add DT objects to it as they get created)
-        Date defaultDate = new Date(2000, 1, 1);
-        if(newTrip == null) {
+        // Get the mode (determines whether a Trip is being created or edited)
+        int mode = getIntent().getExtras().getInt(MODE_KEY);
+        if (mode == CREATE_MODE) {
+            // Create the Trip (must add DT objects to it as they get created)
+            Date defaultDate = new Date(2000, 1, 1);
             newTrip = new Trip("Untitled Trip", defaultDate, defaultDate);
         }
-        else {
+        else if (mode == EDIT_MODE){
             /*
              * CODE NOT CURRENTLY IN USE
              *  - can be used to display DT objects that already exist
@@ -205,13 +201,25 @@ public class StartTripActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    // Insert the Trip into the database
                     TripPlannerDB TripDB = new TripPlannerDB(StartTripActivity.this);
                     TripDB.insertTrip(newTrip);
+
+                    // Navigate to the TripListActivity
                     startActivity(new Intent(StartTripActivity.this, TripListActivity.class));
                 }
 
             }
         });
+
+        // Displays the number of DTs in the Trip (displayed on the bottom-left of the screen)
+        mainLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                itemsAdded.setText(getItemsAddedStr());
+            }
+        });
+        itemsAdded.setText(getResources().getString(R.string.itemsAddedCountStart));
     }
 
     @Override
