@@ -16,6 +16,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -98,11 +100,13 @@ public class TripPlannerDB {
         int statusCode = OPEN_SUCCESS;
 
         try {
+            // Open a database connection for reading
             db = dbHelper.getReadableDatabase();
         }
-        catch (SQLiteException dbReadableException) {
+        catch (SQLiteException e) {
+            // Return a status code and log the exception
             statusCode = OPEN_FAIL;
-            // Log the exception
+            Log.e("TripPlannerDB", e.getMessage(), e);
         }
 
         return statusCode;
@@ -123,11 +127,12 @@ public class TripPlannerDB {
         int statusCode = OPEN_SUCCESS;
 
         try {
+            // Open a database connection for writing
             db = dbHelper.getWritableDatabase();
         }
-        catch (SQLiteException dbWriteableException) {
+        catch (SQLiteException e) {
             statusCode = OPEN_FAIL;
-            // Log the exception
+            Log.e("TripPlannerDB", e.getMessage(), e);
         }
 
         return statusCode;
@@ -153,7 +158,7 @@ public class TripPlannerDB {
                 try {
                     rowID = db.insertOrThrow(TRIP_TABLE, null, dbData);
                 } catch (SQLException e) {
-                    // Log the exception
+                    Log.e("TripPlannerDB", e.getMessage(), e);
                 }
             }
 
@@ -183,7 +188,12 @@ public class TripPlannerDB {
         openWritableDB();
 
         // Update the Trip and then close the connection
-        db.update(TRIP_TABLE, updatedData, whereClause, whereArgs);
+        try {
+            db.update(TRIP_TABLE, updatedData, whereClause, whereArgs);
+        }
+        catch (SQLException e) {
+            Log.e("TripPlannerDB", e.getMessage(), e);
+        }
         closeConnection();
     }
 
@@ -203,7 +213,12 @@ public class TripPlannerDB {
         openWritableDB();
 
         // Delete the Trip and then close the connection
-        db.delete(TRIP_TABLE, whereClause, whereArgs);
+        try {
+            db.delete(TRIP_TABLE, whereClause, whereArgs);
+        }
+        catch (SQLException e) {
+            Log.e("TripPlannerDB", e.getMessage(), e);
+        }
         closeConnection();
     }
 
@@ -223,19 +238,25 @@ public class TripPlannerDB {
         // Open the database for reading
         openReadableDB();
 
-        // Query the database for all rows and columns in the Trip table
-        Cursor cursor = db.query(TRIP_TABLE, null, null,
-                null, null, null, null);
-        while (cursor.moveToNext() == true) {
-            // Convert Cursor to Trip
-            Trip theTrip = cursorToTrip(cursor);
+        try {
+            // Query the database for all rows and columns in the Trip table
+            Cursor cursor = db.query(TRIP_TABLE, null, null,
+                    null, null, null, null);
+            while (cursor.moveToNext()) {
+                // Convert Cursor to Trip
+                Trip theTrip = cursorToTrip(cursor);
 
-            // Add the Trip object to the list
-            tripList.add(theTrip);
+                // Add the Trip object to the list
+                tripList.add(theTrip);
+            }
+
+            closeCursor(cursor);
+            closeConnection();
+        }
+        catch (SQLException e) {
+            Log.e("TripPlannerDB", e.getMessage(), e);
         }
 
-        closeCursor(cursor);
-        closeConnection();
         return tripList;
     }
 
@@ -247,7 +268,12 @@ public class TripPlannerDB {
     */
     private void closeConnection() {
         if (db != null) {
-            db.close();
+            try {
+                db.close();
+            }
+            catch (SQLException e) {
+                Log.e("TripPlannerDB", e.getMessage(), e);
+            }
         }
     }
 
@@ -261,7 +287,12 @@ public class TripPlannerDB {
     */
     private void closeCursor(Cursor c) {  // TEMPORARILY PUBLIC
         if (c != null) {
-            c.close();
+            try {
+                c.close();
+            }
+            catch (SQLException e) {
+                Log.e("TripPlannerDB", e.getMessage(), e);
+            }
         }
     }
 
@@ -278,6 +309,7 @@ public class TripPlannerDB {
     private Trip cursorToTrip(Cursor c) {
         // Get dates
         final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMMM dd HH:mm:ss z yyyy");
+
         Date startDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_START_DATE_COL), new ParsePosition(0));
         Date endDate = dateFormat.parse(c.getString(TripPlannerDB.TRIP_END_DATE_COL), new ParsePosition(0));
 
