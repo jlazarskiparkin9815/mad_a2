@@ -65,7 +65,8 @@ public class TripListActivity extends AppCompatActivity {
                     Trip.serializeTrip(newTrip, TripListActivity.this);
 
                     // Navigate to the TripReview activity
-                    UIManager.navigateAndSendMode(TripListActivity.this, StartTripActivity.class, StartTripActivity.EDIT_MODE);
+                    UIManager.navigateAndSendCode(TripListActivity.this, StartTripActivity.class,
+                                                  StartTripActivity.MODE_KEY, StartTripActivity.EDIT_MODE);
                 }
             });
             tripEdit.setText(R.string.button_edit);
@@ -80,12 +81,12 @@ public class TripListActivity extends AppCompatActivity {
 
         }
 
-        /* CREATE BUTTON */
         Button createTrip = (Button) findViewById(R.id.buttonCreateTrip);
         createTrip.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 // Navigate to the StartTripActivity and send a code that tells it to create a Trip
-                UIManager.navigateAndSendMode(TripListActivity.this, StartTripActivity.class, StartTripActivity.CREATE_MODE);
+                UIManager.navigateAndSendCode(TripListActivity.this, StartTripActivity.class,
+                                              StartTripActivity.MODE_KEY, StartTripActivity.CREATE_MODE);
             }
         });
     }

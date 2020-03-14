@@ -64,12 +64,12 @@ public class TripReview extends AppCompatActivity {
 
         //--------FINISH BUTTON--------//
         Button finishButton = findViewById(R.id.finishButton);
+        final int tripID = newTrip.getID();
         finishButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                finish();
-                startActivity(new Intent(TripReview.this, TripSummaryActivity.class));
+                UIManager.navigateAndSendCode(TripReview.this, TripSummaryActivity.class, "tripID", tripID);
             }
         });
 

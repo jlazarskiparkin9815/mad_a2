@@ -102,9 +102,22 @@ public class UIManager {
     }
 
 
-    public static void navigateAndSendMode(Activity source, Class destination, int mode) {
+    public static void navigateAndSendCode(Activity source, Class destination, String key, int code) {
         Intent intent = new Intent(source, destination);
-        intent.putExtra(StartTripActivity.MODE_KEY, mode);
+        intent.putExtra(key, code);
         source.startActivity(intent);
+    }
+
+    public static int getNavigationCode(Activity a, String key) {
+        int code = 0;
+
+        try {
+            code = a.getIntent().getExtras().getInt(key);
+        }
+        catch (NullPointerException e) {
+            // Log
+        }
+
+        return code;
     }
 }
