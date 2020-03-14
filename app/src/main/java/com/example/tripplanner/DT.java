@@ -12,7 +12,9 @@
 
 package com.example.tripplanner;
 
-public class DT {
+import java.io.Serializable;
+
+public class DT implements Serializable {
     transient public final static int ID_NOT_SET = -1;
 
     public enum DT_Type {

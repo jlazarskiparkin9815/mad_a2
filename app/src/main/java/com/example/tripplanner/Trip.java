@@ -13,6 +13,7 @@
 
 package com.example.tripplanner;
 
+import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -23,11 +24,18 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
 
-public class Trip {
+public class Trip implements Serializable {
+        transient public static final String SERIALIZATION_FILENAME = "/trip.ser";
+
         private ArrayList<DT> dt_list;
         private int id;
         private String name;
@@ -70,13 +78,13 @@ public class Trip {
         }
 
         /*
-        FUNCTION: validateDate
-        DESCRIPTION: Checks whether a date was valid. An error message is
-                     displayed if the date is invalid.
-        PARAMETERS: String dateStartStr: The date that's being checked.
-                    Activity displayMsgActivity: The Activity where the message is
-                        being displayed
-        RETURNS: void
+                FUNCTION: validateDate
+                DESCRIPTION: Checks whether a date was valid. An error message is
+                             displayed if the date is invalid.
+                PARAMETERS: String dateStartStr: The date that's being checked.
+                            Activity displayMsgActivity: The Activity where the message is
+                                being displayed
+                RETURNS: void
         */
         public static boolean validateDate(String dateStartStr) {
                 boolean result = true;
@@ -204,6 +212,69 @@ public class Trip {
                 return newDT;
         }
 
+        /*
+                FUNCTION: serializeTrip
+                DESCRIPTION: Serializes a Trip object and saves it to a '.ser' file. This
+                        allows the Trip object to be passed between Activities. Use this method
+                        when navigating between Activities if you need to pass a Trip object.
+                PARAMETERS:
+                        Trip theTrip: The Trip object that's being serialized.
+                        Activity activity: The Activity that the Trip object is being
+                                passed from. This is just used to get the absolute path
+                                that's needed to save the '.ser' file.
+                RETURNS: N/A
+        */
+        public void serializeTrip(Trip theTrip, Activity activity) {
+                try {
+                        // Open streams
+                        FileOutputStream fos = new FileOutputStream(activity.getFilesDir().getPath() + SERIALIZATION_FILENAME);
+                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                        // Save the object to the file
+                        oos.writeObject(theTrip);
+
+                        // Close the streams
+                        fos.close();
+                        oos.close();
+                }
+                catch (Exception e) {
+                        // Log
+                }
+
+        }
+
+        /*
+                FUNCTION: deserializeTrip
+                DESCRIPTION: Deserializes a Trip object from a '.ser' file.
+                        Use to retrieve data sent by the serializeTrip() method.
+                PARAMETERS:
+                         Activity activity: The Activity that's retrieving the Trip
+                                object. This is used to fine the absolute file path
+                                to the '.ser' file.
+                RETURNS:
+                        Trip theTrip: The Trip object that was deserialized.
+        */
+        public Trip deserializeTrip(Activity activity) {
+                Trip theTrip = null;
+
+                try {
+                        // Open streams for input
+                        FileInputStream fis = new FileInputStream(activity.getFilesDir().getPath() + SERIALIZATION_FILENAME);
+                        ObjectInputStream ois = new ObjectInputStream(fis);
+
+                        // Read from the stream
+                        theTrip = (Trip) ois.readObject();
+
+                        // Close the streams
+                        fis.close();
+                        ois.close();
+                }
+                catch (Exception e) {
+                        // Log
+                }
+
+                return theTrip;
+        }
 
         /* ACCESSORS FOR DATA MEMBERS*/
         public int getID() {return this.id;}
