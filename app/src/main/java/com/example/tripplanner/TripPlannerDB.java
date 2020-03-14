@@ -144,6 +144,26 @@ public class TripPlannerDB {
         closeConnection();
     }
 
+    /*
+        FUNCTION    : deleteTrip()
+        DESCRIPTION : Deletes a Trip from the database.
+        PARAMETERS  :
+            int id: The ID of the Trip that's being deleted.
+        RETURNS     : void
+    */
+    public void deleteTrip(int id) {
+        // Create the where clause (specifies the Trip that's being deleted)
+        String whereClause = TRIP_ID + "= ?";
+        String[] whereArgs = {Integer.toString(id)};
+
+        // Open the database for writing
+        openWritableDB();
+
+        // Delete the Trip and then close the connection
+        db.delete(TRIP_TABLE, whereClause, whereArgs);
+        closeConnection();
+    }
+
     // Gets a single Trip when given an index in the database
     public Trip getSingleTrip(int tripID) {
         // Open the database for reading

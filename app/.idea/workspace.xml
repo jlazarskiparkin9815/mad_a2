@@ -38,6 +38,8 @@
   <component name="ProjectId" id="1Z8FBWdY0ttvyhWELLAQTdYVS4g" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-03-14T17:46:46.587Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="E:/NVPACK/android-sdk-windows" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />

@@ -28,10 +28,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class StartTripActivity extends AppCompatActivity {
+
     private LinearLayout mainLayout; // The vertical layout that's used to hold the DT entries
     public Trip newTrip;
 
@@ -58,6 +60,7 @@ public class StartTripActivity extends AppCompatActivity {
         final SimpleDateFormat dateAllFormat = new SimpleDateFormat("dd/MM/yyyy");
         final NestedScrollView scrollView = findViewById(R.id.dtItemsScroll);
         final TextView itemsAdded = findViewById(R.id.itemsAddedCount);
+        final Button deleteTripButton = (Button)findViewById(R.id.deleteTripButton);
 
         // Get the mode (determines whether a Trip is being created or edited)
         final int mode = getIntent().getExtras().getInt(MODE_KEY);
@@ -75,14 +78,24 @@ public class StartTripActivity extends AppCompatActivity {
             dateStart.setText(dateAllFormat.format(newTrip.getStart()));
             dateEnd.setText(dateAllFormat.format(newTrip.getEnd()));
 
-            List<DT> tmpList = newTrip.getDt_list();
+            List<DT> tmpList = new ArrayList<>(newTrip.getDt_list());
+            newTrip.clearDTs();
             for(int i = 0; i < tmpList.size(); i++)
             {
-                newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, newTrip, tmpList.get(i).getName(), tmpList.get(i).getType(), tmpList.get(i).getID());
+                DT newDT = newTrip.CreateDestinationTransit(StartTripActivity.this, mainLayout, newTrip, tmpList.get(i).getName(), tmpList.get(i).getType(), tmpList.get(i).getID());
+                newTrip.addDestination(newDT);
             }
         }
 
-
+        deleteTripButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TripPlannerDB TripDB = new TripPlannerDB(StartTripActivity.this);
+                TripDB.deleteTrip(newTrip.getID());
+                newTrip = null;
+                startActivity(new Intent(StartTripActivity.this, TripListActivity.class));
+            }
+        });
 
         /* -------------- CREATE LISTENERS -------------- */
         // Create the click listener for the Add button
