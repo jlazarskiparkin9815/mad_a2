@@ -16,6 +16,7 @@ package com.example.tripplanner;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -116,14 +117,17 @@ public class Trip implements Serializable {
         public DT CreateDestinationTransit(AppCompatActivity activity, final LinearLayout mainLayout, final Trip theTrip, String name, DT.DT_Type newType, int id) {
                 // Create the DT object
                 final DT newDT = new DT(name); // Object needs to be 'final' to be accessed within the listeners
+                Log.v("Trip", "A new DT object was created.");
 
                 // Assign an ID to the DT object or reuse the existing one
                 if (id == DT.ID_NOT_SET) {
                         // Increments the DT id.
                         newDT.setID(this.dtIDCounter);
+                        Log.v("Trip", "New trip object assigned new ID " + this.dtIDCounter + " as " + id + " was already taken.");
                         this.dtIDCounter++;
                 }
                 else {
+                        Log.v("Trip", "New trip object assigned requested ID " + id);
                         newDT.setID(id);
                 }
 
@@ -180,6 +184,7 @@ public class Trip implements Serializable {
                         public void onTextChanged(CharSequence text, int start, int before, int count) {
                                 // Update the name of the DT object
                                 newDT.setName(nameBox.getText().toString());
+                                Log.v("DT", "DT was reassigned name " + nameBox.getText().toString());
                         }
 
                         @Override
@@ -197,9 +202,11 @@ public class Trip implements Serializable {
                                 // Assign to the DT_Type enum based on the selected item
                                 if (selectedItem.equals("Destination")) {
                                         newDT.setType((DT.DT_Type.DESTINATION));
+                                        Log.v("DT", "Reassigned trip type to Destination");
                                 }
                                 else if (selectedItem.equals("Transit")) {
                                         newDT.setType((DT.DT_Type.TRANSIT));
+                                        Log.v("DT", "Reassigned trip type to Transit");
                                 }
                         }
 
@@ -276,6 +283,14 @@ public class Trip implements Serializable {
                 return theTrip;
         }
 
+        /*
+                FUNCTION: clearDTs
+                DESCRIPTION: Clears the list of DTs from the trip class.
+                PARAMETERS:
+                        N/A
+                RETURNS:
+                        N/A
+        */
         public void clearDTs(){
                 dt_list.clear();
         }
