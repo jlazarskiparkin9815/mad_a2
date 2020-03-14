@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     FILE             : activity_trip_review.xml
-    PROJECT          : PROG3150 - Assignment 1
+    PROJECT          : PROG3150 - Assignment 2
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
-    FIRST VERSION    : 2020-02-02
+    FIRST VERSION    : 2020-03-09
     DESCRIPTION      :
         This file contains the XML for the TripReview activity.
 -->
@@ -46,8 +46,10 @@
 
 
         android:id="@+id/finishButton"
-        android:layout_width="393dp"
-        android:layout_height="77dp"
+        android:layout_width="186dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="14dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/finishButton"
         android:textColor="@android:color/background_light"
@@ -55,8 +57,27 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchDT"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <Button
+
+
+        android:id="@+id/searchDT"
+        android:layout_width="186dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="14dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/bookDT"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:onClick="browserRedirect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/finishButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.011" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

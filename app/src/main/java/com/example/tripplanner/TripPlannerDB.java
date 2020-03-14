@@ -1,3 +1,12 @@
+/*
+    FILE             : TripPlannerDB
+    PROJECT          : PROG3150 - Assignment 2
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-03-09
+    DESCRIPTION      :
+        This file communicates with the database within Android.
+*/
+
 package com.example.tripplanner;
 import android.content.ContentValues;
 import android.content.Context;

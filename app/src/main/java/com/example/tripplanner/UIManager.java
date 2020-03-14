@@ -1,8 +1,8 @@
 /*
     FILE             : UIManager
-    PROJECT          : PROG3150 - Assignment 1
+    PROJECT          : PROG3150 - Assignment 2
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
-    FIRST VERSION    : 2020-02-02
+    FIRST VERSION    : 2020-03-09
     DESCRIPTION      :
         This class allows dynamically allocating UI elements. Methods are provided for creating
         the following elements: LinearLayout, EditText, and Spinner.
@@ -102,9 +102,22 @@ public class UIManager {
     }
 
 
-    public static void navigateAndSendMode(Activity source, Class destination, int mode) {
+    public static void navigateAndSendCode(Activity source, Class destination, String key, int code) {
         Intent intent = new Intent(source, destination);
-        intent.putExtra(StartTripActivity.MODE_KEY, mode);
+        intent.putExtra(key, code);
         source.startActivity(intent);
+    }
+
+    public static int getNavigationCode(Activity a, String key) {
+        int code = 0;
+
+        try {
+            code = a.getIntent().getExtras().getInt(key);
+        }
+        catch (NullPointerException e) {
+            // Log
+        }
+
+        return code;
     }
 }

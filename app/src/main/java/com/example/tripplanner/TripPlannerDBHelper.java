@@ -1,9 +1,11 @@
 /*
-    FILE          : TripPlannerDBHelper.java
-    PROGRAMMERS   : Conor Barr, Jack Parkinson, Maxim Mikheev, Rick Bloemert
-    FIRST-VERSION : 2020-03-09
-    DESCRIPTION   :
- */
+    FILE             : TripPlannerDBHelper
+    PROJECT          : PROG3150 - Assignment 2
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-03-09
+    DESCRIPTION      :
+        This class assists with communication of various database components.
+*/
 
 package com.example.tripplanner;
 

@@ -1,8 +1,8 @@
 /*
     FILE             : TripSummaryActivity
-    PROJECT          : PROG3150 - Assignment 1
+    PROJECT          : PROG3150 - Assignment 2
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
-    FIRST VERSION    : 2020-02-02
+    FIRST VERSION    : 2020-03-09
     DESCRIPTION      :
         This screen displays a message that tells the user that they've arrived at their
         destination and then allows them to go back to the MainActivity.
@@ -31,9 +31,12 @@ public class TripSummaryActivity extends AppCompatActivity{
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TEMPORARILY COMMENTED OUT  -  IT MAY NOT BE NEEDED NOW THAT WE'RE USING A DATABASE
-//                StartTripActivity.newTrip.setDtIDCounter(0);
-//                StartTripActivity.newTrip = null;
+                // Delete the Trip (it's finished now)
+                TripPlannerDB database = new TripPlannerDB(getApplicationContext());
+                int tripID = UIManager.getNavigationCode(TripSummaryActivity.this, "tripID");
+                database.deleteTrip(tripID);
+
+                // Go back to the main screen
                 startActivity(new Intent(TripSummaryActivity.this, MainActivity.class));
             }
         });

@@ -1,8 +1,8 @@
 /*
     FILE             : StartTripActivity
-    PROJECT          : PROG3150 - Assignment 1
+    PROJECT          : PROG3150 - Assignment 2
     PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
-    FIRST VERSION    : 2020-02-02
+    FIRST VERSION    : 2020-03-09
     DESCRIPTION      :
         This Activity displays the Start Trip screen. It allows
         the user to specify the name of their Trip and a start/end
@@ -65,7 +65,7 @@ public class StartTripActivity extends AppCompatActivity {
         final Button deleteTripButton = (Button)findViewById(R.id.deleteTripButton);
 
         // Get the mode (determines whether a Trip is being created or edited)
-        final int mode = getIntent().getExtras().getInt(MODE_KEY);
+        final int mode = UIManager.getNavigationCode(this, MODE_KEY);
         if (mode == CREATE_MODE) {
             Log.i("StartTripActivity", "Trip has been created.");
             // Create the Trip (must add DT objects to it as they get created)

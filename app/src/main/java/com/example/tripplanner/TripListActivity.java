@@ -1,3 +1,13 @@
+/*
+    FILE             : TripListActivity
+    PROJECT          : PROG3150 - Assignment 2
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-03-09
+    DESCRIPTION      :
+        This class is responsible for functionality of the TripList Activity.
+        Within this activity, all the user's trips are listed in a nice format.
+*/
+
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,7 +78,8 @@ public class TripListActivity extends AppCompatActivity {
                     Trip.serializeTrip(newTrip, TripListActivity.this);
 
                     // Navigate to the TripReview activity
-                    UIManager.navigateAndSendMode(TripListActivity.this, StartTripActivity.class, StartTripActivity.EDIT_MODE);
+                    UIManager.navigateAndSendCode(TripListActivity.this, StartTripActivity.class,
+                                                  StartTripActivity.MODE_KEY, StartTripActivity.EDIT_MODE);
                 }
             });
             tripEdit.setText(R.string.button_edit);
@@ -83,12 +94,12 @@ public class TripListActivity extends AppCompatActivity {
 
         }
 
-        /* CREATE BUTTON */
         Button createTrip = (Button) findViewById(R.id.buttonCreateTrip);
         createTrip.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 // Navigate to the StartTripActivity and send a code that tells it to create a Trip
-                UIManager.navigateAndSendMode(TripListActivity.this, StartTripActivity.class, StartTripActivity.CREATE_MODE);
+                UIManager.navigateAndSendCode(TripListActivity.this, StartTripActivity.class,
+                                              StartTripActivity.MODE_KEY, StartTripActivity.CREATE_MODE);
             }
         });
     }
