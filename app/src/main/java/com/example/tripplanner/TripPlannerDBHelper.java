@@ -45,9 +45,10 @@ public class TripPlannerDBHelper extends SQLiteOpenHelper {
     }
 
     /*
-        FUNCTION    : TripPlannerDBHelper()
+        FUNCTION    : onUpgrade()
         DESCRIPTION :
-            Constructor for the TripPlannerDBHelper class.
+            This method can be used to update the database. It didn't
+            need to be implement for this application.
         PARAMETERS  :
             SQLiteDatabase database: The object that TripPlannerDB uses to
                 manage the database (update, delete, insert, etc.).
