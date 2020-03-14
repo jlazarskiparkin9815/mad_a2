@@ -1,3 +1,13 @@
+/*
+    FILE             : TripListActivity
+    PROJECT          : PROG3150 - Assignment 2
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-03-09
+    DESCRIPTION      :
+        This class is responsible for functionality of the TripList Activity.
+        Within this activity, all the user's trips are listed in a nice format.
+*/
+
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
