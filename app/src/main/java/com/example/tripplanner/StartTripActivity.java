@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -65,14 +67,15 @@ public class StartTripActivity extends AppCompatActivity {
         // Get the mode (determines whether a Trip is being created or edited)
         final int mode = getIntent().getExtras().getInt(MODE_KEY);
         if (mode == CREATE_MODE) {
+            Log.i("StartTripActivity", "Trip has been created.");
             // Create the Trip (must add DT objects to it as they get created)
             Date defaultDate = new Date(2000, 1, 1);
             newTrip = new Trip("Untitled Trip", defaultDate, defaultDate);
         }
         else if (mode == EDIT_MODE){
+            Log.i("StartTripActivity", "Trip has been edited.");
             // Deserialize the Trip (call the deserializeTrip() method, it's in the Trip class)
             newTrip = Trip.deserializeTrip(this);
-
             // Display the data from the Trip object
             tripName.setText(newTrip.getName());
             dateStart.setText(dateAllFormat.format(newTrip.getStart()));
@@ -90,6 +93,7 @@ public class StartTripActivity extends AppCompatActivity {
         deleteTripButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("StartTripActivity", "Trip " + newTrip.getName() + " has been deleted.");
                 TripPlannerDB TripDB = new TripPlannerDB(StartTripActivity.this);
                 TripDB.deleteTrip(newTrip.getID());
                 newTrip = null;
@@ -217,9 +221,11 @@ public class StartTripActivity extends AppCompatActivity {
                     if (mode == CREATE_MODE) {
                         // Insert the Trip into the database
                         TripDB.insertTrip(newTrip);
+                        Log.d("StartTripActivity", "Trip " + newTrip.getName() + " has been added to the database.");
                     }
                     else if (mode == EDIT_MODE) {
                         TripDB.updateTrip(newTrip);
+                        Log.d("StartTripActivity", "Trip " + newTrip.getName() + " has been updated to the database.");
                     }
                     // Navigate to the TripListActivity
                     startActivity(new Intent(StartTripActivity.this, TripListActivity.class));

@@ -1,8 +1,19 @@
 package com.example.tripplanner;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+/*
+    FILE             : DT
+    PROJECT          : PROG3150 - Assignment 1
+    PROGRAMMER       : Conor Barr, Eric Emerson, Jack Parkinson, Maxim Mikheev, Rick Bloemert
+    FIRST VERSION    : 2020-02-02
+    DESCRIPTION      :
+        This is the object that's used to hold Destinations/Transits
+        that are created in the StartTripActivity. Destinations are
+        places that the user is staying on their Trip and Transit
+        are methods of transportation.
+*/
+
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
